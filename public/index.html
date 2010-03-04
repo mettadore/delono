@@ -3,7 +3,7 @@
 <html>
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-    <title>Ruby on Rails: Welcome aboard</title>
+    <title>Welcome to Delono</title>
     <style type="text/css" media="screen">
       body {
         margin: 0;
@@ -206,14 +206,7 @@
     <div id="page">
       <div id="sidebar">
         <ul id="sidebar-items">
-          <li>
-            <form id="search" action="http://www.google.com/search" method="get">
-              <input type="hidden" name="hl" value="en" />
-              <input type="text" id="search-text" name="q" value="site:rubyonrails.org " />
-              <input type="submit" value="Search" /> the Rails site
-            </form>
-          </li>
-        
+        	<li><h3><a href="login">Login</a></h3>
           <li>
             <h3>Join the community</h3>
             <ul class="links">
@@ -237,33 +230,24 @@
 
       <div id="content">
         <div id="header">
-          <h1>Welcome aboard</h1>
-          <h2>You&rsquo;re riding Ruby on Rails!</h2>
+          <h1>Delono</h1>
+          <h2>Consignment sales tracking that's at least not <em>more</em> difficult!</h2>
         </div>
 
-        <div id="about">
-          <h3><a href="rails/info/properties" onclick="about(); return false">About your application&rsquo;s environment</a></h3>
-          <div id="about-content" style="display: none"></div>
-        </div>
-        
         <div id="getting-started">
           <h1>Getting started</h1>
           <h2>Here&rsquo;s how to get rolling:</h2>
           
           <ol>          
             <li>
-              <h2>Use <tt>script/generate</tt> to create your models and controllers</h2>
-              <p>To see all available options, run it without parameters.</p>
+              <h2><a href="signup">Signup</a> for your user account</h2>
+							<p>Or <a href="login">login</a> if you already have an account</p>
             </li>
             
             <li>
-              <h2>Set up a default route and remove or rename this file</h2>
-              <p>Routes are set up in config/routes.rb.</p>
-            </li>
+              <h2><a href="businesses/new">Create a business</a></h2>
+								<p>Create your business' profile so that you can add consigners and products and start tracking your sales</p>
 
-            <li>
-              <h2>Create your database</h2>
-              <p>Run <tt>rake db:migrate</tt> to create your database. If you're not using SQLite (the default), edit <tt>config/database.yml</tt> with your username and password.</p>
             </li>
           </ol>
         </div>
