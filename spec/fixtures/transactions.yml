@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  business_id: 1
+  product_id: 1
+  transaction_type_id: 1
+  wholesale: 1.5
+  retail: 1.5
+
+two:
+  business_id: 1
+  product_id: 1
+  transaction_type_id: 1
+  wholesale: 1.5
+  retail: 1.5

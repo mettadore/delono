@@ -1,0 +1,33 @@
+<p>
+  <b>Code:</b>
+  <%=h @product.code %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%=h @product.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @product.description %>
+</p>
+
+<p>
+  <b>Consigner:</b>
+  <%=h @product.consigner_id %>
+</p>
+
+<p>
+  <b>Wholesale:</b>
+  <%=h @product.wholesale %>
+</p>
+
+<p>
+  <b>Retail:</b>
+  <%=h @product.retail %>
+</p>
+
+
+<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Back', products_path %>

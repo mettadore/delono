@@ -1,0 +1,35 @@
+<h1>New product</h1>
+
+<% form_for(@product) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :code %><br />
+    <%= f.text_field :code %>
+  </p>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </p>
+  <p>
+    <%= f.label :consigner_id %><br />
+    <%= f.text_field :consigner_id %>
+  </p>
+  <p>
+    <%= f.label :wholesale %><br />
+    <%= f.text_field :wholesale %>
+  </p>
+  <p>
+    <%= f.label :retail %><br />
+    <%= f.text_field :retail %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', products_path %>

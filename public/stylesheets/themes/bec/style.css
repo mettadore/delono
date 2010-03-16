@@ -1,6 +1,12 @@
 a:link, a:visited, a:hover, a:active { color: #33f; }
 h1, h2, h3 {color:#444}
 
+h3.title {
+	font-style:italic;
+	margin-top: -5px;
+	color: #DDD;
+}
+
 body {
   color: #333;
   background: #e5e5e5;
