@@ -1,0 +1,84 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first"><%= link_to "#{t("web-app-theme.list", :default => "List")}", consigners_path  %></li>
+      <li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_consigner_path %></li>
+      <li class="active"><%= link_to "#{t("web-app-theme.show", :default => "Show")}", consigner_path %></li>
+    </ul>
+  </div>          
+  <div class="content">
+    <div class="inner">
+      
+        <p>
+          <b><%= t("activerecord.attributes.consigner.name", :default => t("activerecord.labels.name", :default => "Name")) %>:</b>
+          <%= @consigner.name %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.consigner.biz_name", :default => t("activerecord.labels.biz_name", :default => "Biz name")) %>:</b>
+          <%= @consigner.biz_name %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.consigner.street", :default => t("activerecord.labels.street", :default => "Street")) %>:</b>
+          <%= @consigner.street %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.consigner.street_2", :default => t("activerecord.labels.street_2", :default => "Street 2")) %>:</b>
+          <%= @consigner.street_2 %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.consigner.city", :default => t("activerecord.labels.city", :default => "City")) %>:</b>
+          <%= @consigner.city %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.consigner.state", :default => t("activerecord.labels.state", :default => "State")) %>:</b>
+          <%= @consigner.state %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.consigner.zipcode", :default => t("activerecord.labels.zipcode", :default => "Zipcode")) %>:</b>
+          <%= @consigner.zipcode %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.consigner.phone", :default => t("activerecord.labels.phone", :default => "Phone")) %>:</b>
+          <%= @consigner.phone %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.consigner.email", :default => t("activerecord.labels.email", :default => "Email")) %>:</b>
+          <%= @consigner.email %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.consigner.website", :default => t("activerecord.labels.website", :default => "Website")) %>:</b>
+          <%= @consigner.website %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.consigner.fax", :default => t("activerecord.labels.fax", :default => "Fax")) %>:</b>
+          <%= @consigner.fax %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.consigner.notes", :default => t("activerecord.labels.notes", :default => "Notes")) %>:</b>
+          <%= @consigner.notes %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.consigner.last_invoiced", :default => t("activerecord.labels.last_invoiced", :default => "Last invoiced")) %>:</b>
+          <%= @consigner.last_invoiced %>
+        </p>
+      <div class="wat-cf">
+        <%= link_to "#{image_tag("web-app-theme/application_edit.png", :alt => "#{t("web-app-theme.edit", :default=> "Edit")}")} #{t("web-app-theme.edit", :default=> "Edit")}", edit_consigner_path(@consigner), :class => "button" %> 
+        <%= link_to "#{image_tag("web-app-theme/cross.png", :alt => "#{t("web-app-theme.delete", :default=> "Delete")}")} #{t("web-app-theme.delete", :default => "Delete")}", consigner_path(@consigner), :method => "delete", :class => "button", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+      </div>      
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

@@ -11,23 +11,15 @@
       <table class="table">
         <tr>             
           <th class="first">ID</th>
-										<th>
-					<%= t("activerecord.attributes.business.name", :default => t("activerecord.labels.name", :default => "Name")) %>
-</th>
-					          <th><%= t("web-app-theme.created_at", :default => "Created at")  %></th>
+					<th>"Name"</th>
+					<th>Owner</th>
           <th class="last">&nbsp;</th>
         </tr>
         <% @businesses.each do |business| -%>
         <tr class="<%= cycle("odd", "even") %>">
-          <td>
-            <%= business.id %>
-          </td>
-										<td>
-						<%= link_to business.name, business_path(business) %>
-					</td>
-										<td>
-            <%= business.created_at %>
-          </td>
+          <td><%= business.id %></td>
+					<td><%= link_to business.name, business_path(business) %></td>
+					<td><%= link_to business.owner.username, user_path(business.owner) %></td>
           <td class="last">
             <%= link_to "#{t("web-app-theme.show", :default => "Show")}", business_path(business) %> |
             <%= link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_business_path(business) %> |

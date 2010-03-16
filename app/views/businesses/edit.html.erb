@@ -9,9 +9,22 @@
   <div class="content">            
     <h2 class="title"><%= t("web-app-theme.edit", :default => "Edit") %> Business</h2>
     <div class="inner">
-      <% form_for @business, :url => business_path(@business), :html => { :class => :form } do |f| -%>
-        <%= render :partial => "form", :locals => {:f => f} %>
-      <% end -%>
+			<% semantic_form_for @business, :html => {:multipart => true} do |f| -%>
+					<% f.inputs do %>
+					<%= f.input :name, :label => "Business Name" %>
+					<%= f.input :subdomain, :label => "Subdomain" %>
+					<%= f.input :street %>
+					<%= f.input :street_2, :label => "Street (additional)"%>
+					<%= f.input :city %>
+					<%= f.input :state %>
+					<%= f.input :zipcode %>
+					<%= f.input :email %>
+					<%= f.input :website %>
+					<%= f.input :fax %>
+					<%= f.input	:photo, :as => :file %>
+				<% end %>
+				<%= f.buttons %>
+			<% end %>
     </div>
   </div>
 </div>

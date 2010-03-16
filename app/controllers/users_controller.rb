@@ -12,4 +12,15 @@ class UsersController < ApplicationController
       render :action => 'new'
     end
   end
+
+  def show
+    @user = User.find(params[:id])
+    @businesses = Business.find_all_by_owner_id(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @user }
+    end
+  end
+    
 end

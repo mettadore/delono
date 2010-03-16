@@ -8,7 +8,7 @@ require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
   config.gem 'authlogic'
-  config.gem 'cancan'
+  config.gem 'declarative_authorization'
   config.gem 'acts-as-taggable-on'
   config.gem 'formtastic'
   config.gem 'will_paginate'
