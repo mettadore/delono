@@ -1,0 +1,5 @@
+authlogic
+declarative_authorization
+acts-as-taggable-on
+formtastic
+will_paginate
