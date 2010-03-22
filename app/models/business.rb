@@ -9,6 +9,7 @@ class Business < ActiveRecord::Base
   has_many    :consigners, :through => :consigner_businesses
   has_many    :products
   has_many    :transactions
+  has_many    :invoices
   
   validates_presence_of :name, :subdomain, :owner_id
   validates_uniqueness_of :subdomain

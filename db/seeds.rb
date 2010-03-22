@@ -70,7 +70,15 @@ P9.save!
 
 [P1, P2, P3, P4, P5, P6, P7, P8].each do |p|
   (0..rand(15)).each do |n|
-    Transaction.create(:business_id => B2.id, :product_id => p.id, :transaction_type_id => 1)
+    Transaction.create(:business_id => B2.id, :product_id => p.id, :transaction_type_id => TransactionType.type_id("received"))
   end
 end
-Transaction.create(:business_id => B1.id, :product_id => P9.id, :transaction_type_id => 1)
+Transaction.create(:business_id => B1.id, :product_id => P9.id, :transaction_type_id => TransactionType.type_id("received"))
+
+[P1, P2, P3, P4, P5, P6, P7, P8].each do |p|
+  (0..rand(p.count)).each do |n|
+    if rand(2)
+      Transaction.create(:business_id => B2.id, :product_id => p.id, :transaction_type_id => 2 + rand(3))
+    end
+  end
+end

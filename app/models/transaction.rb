@@ -2,18 +2,22 @@ class Transaction < ActiveRecord::Base
   belongs_to  :product
   belongs_to  :business
   belongs_to  :transaction_type
+  belongs_to  :invoice
   validates_presence_of :retail, :wholesale, :business_id, :product_id, :transaction_type_id
   
   before_validation :set_prices!
   
-  named_scope :noninvoiced,  :conditions => ["invoiced => false"]
-  named_scope :invoiced,  :conditions => ["invoiced => true"]
+  named_scope :noninvoiced,  :conditions => ["invoice_id = 0"]
+  named_scope :invoiced,  :conditions => ["invoiced != 0"]
+  named_scope :by_invoice,  lambda {|id| {:conditions => ["invoice_id = ?", id]}}
   named_scope :by_business, lambda { |id| {:conditions => ["business_id = ?", id]}}
-  named_scope :received_by_product,  lambda { |id| {:conditions => ["transaction_type_id = ? AND product_id = ?", TransactionType.type_id("received"), id]}}
-  named_scope :sold_by_product,  lambda { |id| {:conditions => ["transaction_type_id = ? AND product_id = ?", TransactionType.type_id("sold"), id]}}
-  named_scope :restocked_by_product,  lambda { |id| {:conditions => ["transaction_type_id = ? AND product_id = ?", TransactionType.type_id("restocked"), id]}}
-  named_scope :returned_by_product,  lambda { |id| {:conditions => ["transaction_type_id = ? AND product_id = ?", TransactionType.type_id("returned"), id]}}
-  named_scope :lost_by_product,  lambda { |id| {:conditions => ["transaction_type_id = ? AND product_id = ?", TransactionType.type_id("lost"), id]}}
+  named_scope :by_product, lambda { |id| {:conditions => ["product_id = ?", id]}}
+
+  named_scope :received,  :conditions => ["transaction_type_id = ?", TransactionType.type_id("received")]
+  named_scope :sold,  :conditions => ["transaction_type_id = ?", TransactionType.type_id("sold")]
+  named_scope :restocked,  :conditions => ["transaction_type_id = ?", TransactionType.type_id("restocked")]
+  named_scope :returned,  :conditions => ["transaction_type_id = ?", TransactionType.type_id("returned")]
+  named_scope :lost,  :conditions => ["transaction_type_id = ?", TransactionType.type_id("lost")]
 
   private
   

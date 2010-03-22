@@ -11,28 +11,26 @@
       <table class="table">
         <tr>             
           <th class="first">Code</th>
-					<th>Name (click to sell)</th>
-					<th>In Stock</th>
+					<th>Name</th>
 					<th>Wholesale</th>
 					<th>Retail</th>
-					<th>Sell!</th>
-					<th>Receive</th>
+					<th>In Stock</th>
+					<th>Sales</th>
+					<th>Income</th>
+					<th>Cost</th>
           <th class="last">&nbsp;</th>
         </tr>
         <% @products.each do |product| -%>
         <tr class="<%= cycle("odd", "even") %>">
 					<td><%= link_to product.code, product_path(product) %></td>
-          <td><%= link_to product.name, product_path(product) + "/sell" %></td>
+          <td><%= link_to product.name, product_path(product) %></td>
+					<td><%= number_to_currency product.wholesale %></td>
+					<td><%= number_to_currency product.retail %></td>
 					<td><%= product.count > 0 ? product.count : "No Stock" %></td>
-					<td><%= product.wholesale %></td>
-					<td><%= product.retail %></td>
-					<td><%= link_to "Sell!", product_path(product) + "/sell" if product.count > 0 %></td>
-					<td><%= link_to "Receive", product_path(product) + "/receive" %></td>
-          <td class="last">
-						<%= link_to "Restock", product_path(product) + "/restock" %> |
-						<%= link_to "Return", product_path(product) + "/return" %> |
-						<%= link_to "Lose", product_path(product) + "/Lose" %> |
-          </td>
+					<td><%= product.output_count %></td>
+					<td><%= number_to_currency product.total_income_this_period %></td>
+					<td><%= number_to_currency product.total_cost_this_period %></td>
+					<td class = "last"><%= link_to "Sell!", product_path(product) + "/sell" if product.count > 0 %></td>
         </tr>          
         <% end -%>
       </table>

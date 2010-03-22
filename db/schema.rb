@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100316231638) do
+ActiveRecord::Schema.define(:version => 20100322190419) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "business_id"
@@ -64,6 +64,14 @@ ActiveRecord::Schema.define(:version => 20100316231638) do
     t.datetime "updated_at"
   end
 
+  create_table "invoices", :force => true do |t|
+    t.integer  "business_id"
+    t.integer  "consigner_id"
+    t.date     "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "products", :force => true do |t|
     t.string   "code",         :null => false
     t.string   "name"
@@ -102,12 +110,12 @@ ActiveRecord::Schema.define(:version => 20100316231638) do
   end
 
   create_table "transactions", :force => true do |t|
-    t.integer  "business_id",                            :null => false
-    t.integer  "product_id",                             :null => false
-    t.integer  "transaction_type_id", :default => 1,     :null => false
-    t.float    "wholesale",                              :null => false
-    t.float    "retail",                                 :null => false
-    t.boolean  "invoiced",            :default => false, :null => false
+    t.integer  "business_id",                        :null => false
+    t.integer  "product_id",                         :null => false
+    t.integer  "transaction_type_id", :default => 1, :null => false
+    t.float    "wholesale",                          :null => false
+    t.float    "retail",                             :null => false
+    t.integer  "invoice_id",          :default => 0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

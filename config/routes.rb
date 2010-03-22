@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :invoices
+
   map.resources :products
   
   %w(receive sell restock return loose).each do |act|

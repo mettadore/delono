@@ -6,7 +6,7 @@ class CreateTransactions < ActiveRecord::Migration
       t.integer :transaction_type_id, :null => false, :default => 1
       t.float :wholesale, :null => false
       t.float :retail, :null => false
-      t.boolean :invoiced,  :null => false, :default => false
+      t.integer :invoice_id, :null => false, :default => 0
 
       t.timestamps
     end

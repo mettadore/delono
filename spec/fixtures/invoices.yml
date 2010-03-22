@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  business_id: 1
+  consigner_id: 1
+  date: 2010-03-22
+
+two:
+  business_id: 1
+  consigner_id: 1
+  date: 2010-03-22
