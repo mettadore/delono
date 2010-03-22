@@ -82,3 +82,4 @@ Transaction.create(:business_id => B1.id, :product_id => P9.id, :transaction_typ
     end
   end
 end
+

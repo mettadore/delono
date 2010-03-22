@@ -19,6 +19,14 @@ class Transaction < ActiveRecord::Base
   named_scope :returned,  :conditions => ["transaction_type_id = ?", TransactionType.type_id("returned")]
   named_scope :lost,  :conditions => ["transaction_type_id = ?", TransactionType.type_id("lost")]
 
+  def self.sold_and_lost(id)
+    Transaction.sold.by_product(id) + Transaction.lost.by_product(id)
+  end
+  
+  def invoice!(id)
+    self.invoice_id = id if self.invoice_id == 0
+  end
+
   private
   
   def set_prices!

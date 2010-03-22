@@ -27,9 +27,9 @@
 					<td><%= number_to_currency product.wholesale %></td>
 					<td><%= number_to_currency product.retail %></td>
 					<td><%= product.count > 0 ? product.count : "No Stock" %></td>
-					<td><%= product.output_count %></td>
-					<td><%= number_to_currency product.total_income_this_period %></td>
-					<td><%= number_to_currency product.total_cost_this_period %></td>
+					<td><%= product.sales %></td>
+					<td><%= number_to_currency product.income_this_period %></td>
+					<td><%= number_to_currency product.cost_this_period %></td>
 					<td class = "last"><%= link_to "Sell!", product_path(product) + "/sell" if product.count > 0 %></td>
         </tr>          
         <% end -%>

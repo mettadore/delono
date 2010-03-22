@@ -1,9 +1,10 @@
 class CreateInvoices < ActiveRecord::Migration
   def self.up
     create_table :invoices do |t|
-      t.integer :business_id
-      t.integer :consigner_id
-      t.date :date
+      t.integer :business_id, :null => false
+      t.integer :consigner_id, :null => false
+      t.date :date, :null => false
+      t.float   :total, :null => false
 
       t.timestamps
     end
