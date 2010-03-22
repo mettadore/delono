@@ -1,36 +1,19 @@
-<h1>Editing product</h1>
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first"><%= link_to "#{t("web-app-theme.list", :default => "List")}", products_path  %></li>
+      <li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_product_path %></li>
+      <li class="active"><%= link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_product_path %></li>
+    </ul>
+  </div>          
+  <div class="content">            
+    <h2 class="title"><%= t("web-app-theme.edit", :default => "Edit") %> Product</h2>
+    <div class="inner">
+      <% form_for @product, :url => product_path(@product), :html => { :class => :form } do |f| -%>
+        <%= render :partial => "form", :locals => {:f => f} %>
+      <% end -%>
+    </div>
+  </div>
+</div>
 
-<% form_for(@product) do |f| %>
-  <%= f.error_messages %>
-
-  <p>
-    <%= f.label :code %><br />
-    <%= f.text_field :code %>
-  </p>
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </p>
-  <p>
-    <%= f.label :consigner_id %><br />
-    <%= f.text_field :consigner_id %>
-  </p>
-  <p>
-    <%= f.label :wholesale %><br />
-    <%= f.text_field :wholesale %>
-  </p>
-  <p>
-    <%= f.label :retail %><br />
-    <%= f.text_field :retail %>
-  </p>
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
-<% end %>
-
-<%= link_to 'Show', @product %> |
-<%= link_to 'Back', products_path %>
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

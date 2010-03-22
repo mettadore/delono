@@ -41,11 +41,11 @@ B1.consigners << C1
 B1.save!
 B2.save!
 
-TransactionType.create(:name => "receipt")
-TransactionType.create(:name => "sale")
-TransactionType.create(:name => "return")
-TransactionType.create(:name => "unsale")
-TransactionType.create(:name => "loss")
+TransactionType.create(:noun => "receipt", :verb => "receive", :past => "received")
+TransactionType.create(:noun => "sale", :verb => "sell", :past => "sold")
+TransactionType.create(:noun => "restock", :verb => "restock", :past => "restocked")
+TransactionType.create(:noun => "return", :verb => "return", :past => "returned")
+TransactionType.create(:noun => "loss", :verb => "loose", :past => "lost")
 
 P1 = Product.new(:code => "GSYXL", :name => "Gawdy Shirt, Puke Yellow, Extra Large", :consigner_id => C2.id, :business_id => B2.id, :wholesale => 15, :retail => 20)
 P1.save!

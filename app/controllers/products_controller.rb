@@ -82,4 +82,21 @@ class ProductsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def sell
+    product = Product.find(params[:id])
+    @transaction = Transaction.new( :business_id => product.business.id,
+                                    :product_id => product.id,
+                                    :transaction_type_id => TransactionType.find_by_verb("sell").id)
+    
+    respond_to do |format|
+      if @transaction.save
+        flash[:notice] = "One Product code #{product.code} sold!"
+        format.html {redirect_to :back}
+      else
+        format.html { render :action => "sell"}
+      end
+    end
+  end    
+
 end
