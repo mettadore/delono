@@ -4,7 +4,7 @@ class CreateInvoices < ActiveRecord::Migration
       t.integer :business_id, :null => false
       t.integer :consigner_id, :null => false
       t.date :date, :null => false
-      t.float   :total, :null => false
+      t.float   :total, :null => false, :default => 0
 
       t.timestamps
     end

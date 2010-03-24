@@ -25,6 +25,7 @@ class Transaction < ActiveRecord::Base
   
   def invoice!(id)
     self.invoice_id = id if self.invoice_id == 0
+    self.save!
   end
 
   private

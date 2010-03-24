@@ -8,16 +8,34 @@
   </div>          
   <div class="content">
     <div class="inner">
-      
-        <p>
-          <b><%= t("activerecord.attributes.invoice.business_id", :default => t("activerecord.labels.business_id", :default => "Business")) %>:</b>
-          <%= @invoice.business_id %>
-        </p>
-
-        <p>
-          <b><%= t("activerecord.attributes.invoice.consigner_id", :default => t("activerecord.labels.consigner_id", :default => "Consigner")) %>:</b>
-          <%= @invoice.consigner_id %>
-        </p>
+      <h2>Invoice #<%= @invoice.id %></h2>
+			<h3>Consigner: <%= @invoice.consigner.name %></h3>
+			<p>
+				<strong><%= @invoice.consigner.biz_name %></strong><br />
+				<%= @invoice.consigner.street %><br/>
+				<%= @invoice.consigner.city %>, <%= @invoice.consigner.state %> <%= @invoice.consigner.zipcode %>
+					
+				<table class="table">
+	        <tr>             
+	          <th class="first">Code</th>
+						<th>Name</th>
+						<th>Number Sold</th>
+						<th>Wholesale Price</th>
+	          <th class="last">&nbsp;</th>
+	        </tr>
+	        <% @invoice.products.each_pair do |product, details| -%>
+						<% details.each_pair do |wholesale, num| -%>
+	        <tr class="<%= cycle("odd", "even") %>">
+	          <td><%= link_to product.code, product_path(product) %></td>
+						<td><%= link_to product.name, product_path(product) %>
+						<td><%= num %></td>
+						<td><%= wholesale %></td>
+	          <td class="last"><%= num * wholesale %></td>
+	        </tr>          
+					<% end -%>
+	        <% end -%>
+	      </table>
+		 <h3 style="align:right">Total Due: <%= @invoice.total %></h3>
       <div class="wat-cf">
         <%= link_to "#{image_tag("web-app-theme/application_edit.png", :alt => "#{t("web-app-theme.edit", :default=> "Edit")}")} #{t("web-app-theme.edit", :default=> "Edit")}", edit_invoice_path(@invoice), :class => "button" %> 
         <%= link_to "#{image_tag("web-app-theme/cross.png", :alt => "#{t("web-app-theme.delete", :default=> "Delete")}")} #{t("web-app-theme.delete", :default => "Delete")}", invoice_path(@invoice), :method => "delete", :class => "button", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>

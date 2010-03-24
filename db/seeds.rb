@@ -73,13 +73,25 @@ P9.save!
     Transaction.create(:business_id => B2.id, :product_id => p.id, :transaction_type_id => TransactionType.type_id("received"))
   end
 end
+
+Transaction.create(:business_id => B2.id, :product_id => P8.id, :transaction_type_id => TransactionType.type_id("sold"))
+Transaction.create(:business_id => B2.id, :product_id => P8.id, :transaction_type_id => TransactionType.type_id("sold"), :wholesale => 30)
+
 Transaction.create(:business_id => B1.id, :product_id => P9.id, :transaction_type_id => TransactionType.type_id("received"))
 
 [P1, P2, P3, P4, P5, P6, P7, P8].each do |p|
   (0..rand(p.count)).each do |n|
-    if rand(2)
-      Transaction.create(:business_id => B2.id, :product_id => p.id, :transaction_type_id => 2 + rand(3))
+    if rand(3) == 2
+      Transaction.create(:business_id => B2.id, :product_id => p.id, :transaction_type_id => TransactionType.type_id("sold"))
     end
+    if rand(50) == 45
+      Transaction.create(:business_id => B2.id, :product_id => p.id, :transaction_type_id => TransactionType.type_id("lost"))
+    end
+    if rand(10) == 8
+      Transaction.create(:business_id => B2.id, :product_id => p.id, :transaction_type_id => TransactionType.type_id("returned"))
+    end    
   end
 end
 
+Invoice.create(:business_id => B2.id, :consigner_id => C2.id)
+Invoice.create(:business_id => B2.id, :consigner_id => C3.id)

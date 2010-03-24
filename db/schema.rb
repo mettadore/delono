@@ -65,9 +65,10 @@ ActiveRecord::Schema.define(:version => 20100322190419) do
   end
 
   create_table "invoices", :force => true do |t|
-    t.integer  "business_id"
-    t.integer  "consigner_id"
-    t.date     "date"
+    t.integer  "business_id",                   :null => false
+    t.integer  "consigner_id",                  :null => false
+    t.date     "date",                          :null => false
+    t.float    "total",        :default => 0.0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
