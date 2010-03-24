@@ -1,8 +1,10 @@
 class ProductsController < ApplicationController
+  before_filter :business
+
   # GET /products
   # GET /products.xml
   def index
-    @products = Product.all
+    @products = @business.products
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +15,7 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.xml
   def show
-    @product = Product.find(params[:id])
+    @product = @business.products.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,7 +26,7 @@ class ProductsController < ApplicationController
   # GET /products/new
   # GET /products/new.xml
   def new
-    @product = Product.new
+    @product = @business.products.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,13 +36,13 @@ class ProductsController < ApplicationController
 
   # GET /products/1/edit
   def edit
-    @product = Product.find(params[:id])
+    @product = @business.products.find(params[:id])
   end
 
   # POST /products
   # POST /products.xml
   def create
-    @product = Product.new(params[:product])
+    @product = @business.products.build(params[:product])
 
     respond_to do |format|
       if @product.save
@@ -57,7 +59,7 @@ class ProductsController < ApplicationController
   # PUT /products/1
   # PUT /products/1.xml
   def update
-    @product = Product.find(params[:id])
+    @product = @business.products.find(params[:id])
 
     respond_to do |format|
       if @product.update_attributes(params[:product])
@@ -74,7 +76,7 @@ class ProductsController < ApplicationController
   # DELETE /products/1
   # DELETE /products/1.xml
   def destroy
-    @product = Product.find(params[:id])
+    @product = @business.products.find(params[:id])
     @product.destroy
 
     respond_to do |format|
@@ -84,7 +86,7 @@ class ProductsController < ApplicationController
   end
 
   def sell
-    product = Product.find(params[:id])
+    product = @business.products.find(params[:id])
     @transaction = Transaction.new( :business_id => product.business.id,
                                     :product_id => product.id,
                                     :transaction_type_id => TransactionType.find_by_verb("sell").id)
@@ -99,4 +101,9 @@ class ProductsController < ApplicationController
     end
   end    
 
+  private
+  
+  def business
+    @business = Business.find(current_user.manages.first)
+  end
 end

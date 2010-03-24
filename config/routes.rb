@@ -1,15 +1,14 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :invoices
-
-  map.resources :products
   
   %w(receive sell restock return loose).each do |act|
-    map.connect "products/:id/#{act}", :controller => 'products', :action => act
+    map.connect "businesses/:business_id/products/:id/#{act}", :controller => 'products', :action => act
   end
 
-  map.resources :consigners
-
-  map.resources :businesses
+  map.resources :businesses do |business|
+    business.resources :consigners
+    business.resources :products
+    business.resources :invoices
+  end    
 
   map.signup 'signup', :controller => 'users', :action => 'new'
   map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'
@@ -18,7 +17,6 @@ ActionController::Routing::Routes.draw do |map|
 
 
   map.resources :users
-  map.root :businesses
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
+  map.root :controller => 'users', :action => 'show'
+
 end

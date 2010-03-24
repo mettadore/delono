@@ -12,21 +12,25 @@
 			<h3 class="title">Where Microbusiness meets Fair Trade</h3>
       <div id="user-navigation">
         <ul class="wat-cf">
-          <li><a href="#"><%= t("web-app-theme.profile", :default => "Profile") %></a></li>
-          <li><a href="#"><%= t("web-app-theme.settings", :default => "Settings") %></a></li>
-          <li><a href="/logout" class="logout"><%= t("web-app-theme.logout", :default => "Logout") %></a></li>
+					<% if current_user %>
+						<li><%= link_to "Profile", edit_user_path(current_user) %></li>
+						<li><%= link_to "Logout", logout_path %></li>
+					<% else %>
+	          <li><%= link_to "Register", signup_path %></li>
+	          <li><%= link_to "Login", login_path %></li>
+					<% end %>
         </ul>
       </div>      
       <div id="main-navigation">
         <ul class="wat-cf">
 	 				<li class="<%= controller.controller_path == 'products' ? 'active' : '' %>">
-						<a href="<%= products_path %>">Products</a>
+						<%= link_to "Products", business_products_path(@business) %>
 					</li>
 	 				<li class="<%= controller.controller_path == 'consigners' ? 'active' : '' %>">
-						<a href="<%= consigners_path %>">Consigners</a>
+						<%= link_to "Consigners", business_consigners_path(@business) %>
 					</li>
 				 	<li class="<%= controller.controller_path == 'invoices' ? 'active' : '' %>">
-						<a href="<%= invoices_path %>">Invoices</a>
+						<%= link_to "Invoices",	business_invoices_path(@business) %>
 					</li>
 				</ul>
       </div>

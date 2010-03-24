@@ -1,8 +1,8 @@
 <div class="block">
   <div class="secondary-navigation">
     <ul class="wat-cf">
-	    <li class="first active"><%= link_to "#{t("web-app-theme.list", :default => "List")}", invoices_path  %></li>
-  		<li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_invoice_path %></li>
+	    <li class="first active"><%= link_to "List", business_invoices_path(@business)  %></li>
+  		<li><%= link_to "New", new_business_invoice_path(@business) %></li>
     </ul>
   </div>          
   <div class="content">          
@@ -19,11 +19,11 @@
         <tr class="<%= cycle("odd", "even") %>">
           <td><%= invoice.id %></td>
 					<td><%= invoice.date %></td>
-					<td><%= link_to invoice.consigner.name, consigner_path(invoice.consigner) %></td>
+					<td><%= link_to invoice.consigner.name, business_consigner_path(@business, invoice.consigner) %></td>
           <td class="last">
-            <%= link_to "#{t("web-app-theme.show", :default => "Show")}", invoice_path(invoice) %> |
-            <%= link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_invoice_path(invoice) %> |
-            <%= link_to "#{t("web-app-theme.delete", :default => "Delete")}", invoice_path(invoice), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+            <%= link_to "#{t("web-app-theme.show", :default => "Show")}", business_invoice_path(@business, invoice) %> |
+            <%= link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_business_invoice_path(@business, invoice) %> |
+            <%= link_to "#{t("web-app-theme.delete", :default => "Delete")}", business_invoice_path(@business, invoice), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
           </td>
         </tr>          
         <% end -%>

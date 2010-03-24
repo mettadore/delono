@@ -1,8 +1,8 @@
 <div class="block">
   <div class="secondary-navigation">
     <ul class="wat-cf">
-	    <li class="first active"><%= link_to "#{t("web-app-theme.list", :default => "List")}", products_path  %></li>
-  		<li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_product_path %></li>
+	    <li class="first active"><%= link_to "List", business_products_path(@business)  %></li>
+  		<li><%= link_to "New", new_business_product_path(@business) %></li>
     </ul>
   </div>          
   <div class="content">          
@@ -22,15 +22,15 @@
         </tr>
         <% @products.each do |product| -%>
         <tr class="<%= cycle("odd", "even") %>">
-					<td><%= link_to product.code, product_path(product) %></td>
-          <td><%= link_to product.name, product_path(product) %></td>
+					<td><%= link_to product.code, [@business, product] %></td>
+          <td><%= link_to product.name, business_product_path(@business, product) %></td>
 					<td><%= number_to_currency product.wholesale %></td>
 					<td><%= number_to_currency product.retail %></td>
 					<td><%= product.count > 0 ? product.count : "No Stock" %></td>
 					<td><%= product.sales %></td>
 					<td><%= number_to_currency product.income_this_period %></td>
 					<td><%= number_to_currency product.cost_this_period %></td>
-					<td class = "last"><%= link_to "Sell!", product_path(product) + "/sell" if product.count > 0 %></td>
+					<td class = "last"><%= link_to "Sell!", business_product_path(@business, product) + "/sell" if product.count > 0 %></td>
         </tr>          
         <% end -%>
       </table>

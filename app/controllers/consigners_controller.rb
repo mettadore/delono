@@ -1,8 +1,9 @@
 class ConsignersController < ApplicationController
+  before_filter :business
   # GET /consigners
   # GET /consigners.xml
   def index
-    @consigners = Consigner.all
+    @consigners = @business.consigners
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +14,7 @@ class ConsignersController < ApplicationController
   # GET /consigners/1
   # GET /consigners/1.xml
   def show
-    @consigner = Consigner.find(params[:id])
+    @consigner = @business.consigners.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,7 +25,7 @@ class ConsignersController < ApplicationController
   # GET /consigners/new
   # GET /consigners/new.xml
   def new
-    @consigner = Consigner.new
+    @consigner = @business.consigners.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,13 +35,13 @@ class ConsignersController < ApplicationController
 
   # GET /consigners/1/edit
   def edit
-    @consigner = Consigner.find(params[:id])
+    @consigner = @business.consigners.find(params[:id])
   end
 
   # POST /consigners
   # POST /consigners.xml
   def create
-    @consigner = Consigner.new(params[:consigner])
+    @consigner = @business.consigners.build(params[:consigner])
 
     respond_to do |format|
       if @consigner.save
@@ -57,7 +58,7 @@ class ConsignersController < ApplicationController
   # PUT /consigners/1
   # PUT /consigners/1.xml
   def update
-    @consigner = Consigner.find(params[:id])
+    @consigner = @business.consigners.find(params[:id])
 
     respond_to do |format|
       if @consigner.update_attributes(params[:consigner])
@@ -74,7 +75,7 @@ class ConsignersController < ApplicationController
   # DELETE /consigners/1
   # DELETE /consigners/1.xml
   def destroy
-    @consigner = Consigner.find(params[:id])
+    @consigner = @business.consigners.find(params[:id])
     @consigner.destroy
 
     respond_to do |format|
@@ -82,4 +83,11 @@ class ConsignersController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  private
+  
+  def business
+    @business = Business.find(current_user.manages.first)
+  end
+
 end

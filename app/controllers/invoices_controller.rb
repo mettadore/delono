@@ -1,4 +1,5 @@
 class InvoicesController < ApplicationController
+  before_filter :business
   # GET /invoices
   # GET /invoices.xml
   def index
@@ -82,4 +83,11 @@ class InvoicesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  private
+  
+  def business
+    @business = Business.find(current_user.manages.first)
+  end
+
 end

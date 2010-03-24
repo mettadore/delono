@@ -28,6 +28,8 @@ class Business < ActiveRecord::Base
 
   before_validation :downcase_subdomain
   
+  after_save  :set_manager
+  
   named_scope :owned_by,  lambda {|id| { :conditions => ["owner_id = ?", id]}}
 
 #  after_create :add_owner
@@ -67,6 +69,10 @@ class Business < ActiveRecord::Base
   private
   def downcase_subdomain
     self.subdomain.downcase! if attribute_present?("subdomain")
+  end
+  
+  def set_manager
+    User.find(owner_id).add_business_managed(self)
   end
 
 end
