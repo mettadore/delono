@@ -6,7 +6,8 @@ class User < ActiveRecord::Base
   has_many  :manages,   :through => :assignments, :source => :business
   has_many  :uses,      :through => :assignments, :source => :business
   
-  validates_presence_of :first_name, :last_name, :username, :email
+  validates_presence_of :email
+  validates_uniqueness_of :email
 
   def owns
     Business.owned_by(id)

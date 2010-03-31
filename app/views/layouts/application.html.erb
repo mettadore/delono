@@ -13,7 +13,7 @@
       <div id="user-navigation">
         <ul class="wat-cf">
 					<% if current_user %>
-						<li><%= link_to "Profile", edit_user_path(current_user) %></li>
+						<li><%= link_to "Hello #{current_user.first_name}", edit_user_path(current_user) %></li>
 						<li><%= link_to "Logout", logout_path %></li>
 					<% else %>
 	          <li><%= link_to "Register", signup_path %></li>
@@ -47,7 +47,7 @@
         <%= yield %>
         <div id="footer">
           <div class="block">
-            <p>Copyright &copy; <%= Time.now.year %> Your Site.</p>
+            <p>Copyright &copy; <%= Time.now.year %> John Metta.</p>
           </div>      
         </div>
       </div>

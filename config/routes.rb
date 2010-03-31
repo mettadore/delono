@@ -15,8 +15,10 @@ ActionController::Routing::Routes.draw do |map|
   map.login 'login', :controller => 'user_sessions', :action => 'new'
   map.resources :user_sessions
 
-
   map.resources :users
-  map.root :controller => 'users', :action => 'show'
+
+  map.root :controller => "home", :action => "show"
+  map.home ':page', :controller => 'home', :action => "show", :page => /index/
+
 
 end

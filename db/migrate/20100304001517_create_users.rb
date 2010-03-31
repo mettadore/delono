@@ -3,11 +3,10 @@ class CreateUsers < ActiveRecord::Migration
     create_table :users do |t|
       t.string  :first_name
       t.string  :last_name
-      t.string :username
-      t.string :email
-      t.string :persistence_token
-      t.string :crypted_password
-      t.string :password_salt
+      t.string :email,  :null => false
+      t.string :persistence_token,  :null => false
+      t.string :crypted_password,  :null => false
+      t.string :password_salt,  :null => false
       t.integer :login_count, :default => 0, :null => false
       t.datetime :last_request_at
       t.datetime :last_login_at
@@ -17,7 +16,6 @@ class CreateUsers < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :users, :username
     add_index :users, :email
 
   end

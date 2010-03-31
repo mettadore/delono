@@ -6,13 +6,13 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Major.create(:name => 'Daley', :city => cities.first)
 
-U1 = User.new(:first_name => "John", :last_name => "Metta", :username => "john", :email => "john@jmetta.org", :password => "et48ID", :password_confirmation => "et48ID")
+U1 = User.new(:first_name => "John", :last_name => "Metta", :email => "john@jmetta.org", :password => "et48ID", :password_confirmation => "et48ID")
 U1.save!
 
-U2 = User.new(:first_name => "Delona", :last_name => "Campos-Davis",:username => "delona", :email => "info@smallplanettrading.com", :password => "mall202", :password_confirmation => "mall202")
+U2 = User.new(:first_name => "Delona", :last_name => "Campos-Davis", :email => "info@smallplanettrading.com", :password => "mall202", :password_confirmation => "mall202")
 U2.save!
 
-U3 = User.create(:first_name => "Karen", :last_name => "Murphy-Mendez", :username => "karen", :email => "murphymendez@gmail.com", :password => "mall202", :password_confirmation => "mall202")
+U3 = User.create(:first_name => "Karen", :last_name => "Murphy-Mendez", :email => "murphymendez@gmail.com", :password => "mall202", :password_confirmation => "mall202")
 U3.save!
 B1 = Business.new(:name => "John Metta Consulting", :owner_id => U1.id, :street => "651 Floral Place", 
                 :city => "Hood River", :state => "oregon", :subdomain => "mettadore",

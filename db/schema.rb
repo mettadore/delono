@@ -124,11 +124,10 @@ ActiveRecord::Schema.define(:version => 20100322190419) do
   create_table "users", :force => true do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "username"
-    t.string   "email"
-    t.string   "persistence_token"
-    t.string   "crypted_password"
-    t.string   "password_salt"
+    t.string   "email",                            :null => false
+    t.string   "persistence_token",                :null => false
+    t.string   "crypted_password",                 :null => false
+    t.string   "password_salt",                    :null => false
     t.integer  "login_count",       :default => 0, :null => false
     t.datetime "last_request_at"
     t.datetime "last_login_at"
@@ -140,6 +139,5 @@ ActiveRecord::Schema.define(:version => 20100322190419) do
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
-  add_index "users", ["username"], :name => "index_users_on_username"
 
 end

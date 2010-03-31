@@ -1,4 +1,5 @@
 class ConsignersController < ApplicationController
+  before_filter :login_required
   before_filter :business
   # GET /consigners
   # GET /consigners.xml
