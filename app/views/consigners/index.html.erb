@@ -13,6 +13,7 @@
           <th class="first">ID</th>
 					<th>Name</th>
 					<th>Business Name</th>
+					<th>Invoiced</th>
           <th class="last">&nbsp;</th>
         </tr>
         <% @consigners.each do |consigner| -%>
@@ -20,10 +21,9 @@
           <td><%= consigner.id %></td>
 					<td><%= link_to consigner.name, business_consigner_path(@business, consigner) %></td>
 					<td><%= consigner.biz_name %></td>
+					<td><%= consigner.last_invoiced %></td>
           <td class="last">
-            <%= link_to "Show", business_consigner_path(@business, consigner) %> |
-            <%= link_to "Edit", edit_business_consigner_path(@business, consigner) %> |
-            <%= link_to "Delete", business_consigner_path(@business, consigner), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+            <%= link_to "Invoice!", business_consigner_path(@business, consigner) + "/invoice"%>
           </td>
         </tr>          
         <% end -%>

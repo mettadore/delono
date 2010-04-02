@@ -3,7 +3,8 @@ ActionController::Routing::Routes.draw do |map|
   %w(receive sell restock return loose).each do |act|
     map.connect "businesses/:business_id/products/:id/#{act}", :controller => 'products', :action => act
   end
-
+  map.connect "businesses/:business_id/consigners/:id/invoice", :controller => 'invoices', :action => 'invoice'
+  
   map.resources :businesses do |business|
     business.resources :consigners
     business.resources :products

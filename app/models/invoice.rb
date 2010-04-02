@@ -19,20 +19,25 @@ class Invoice < ActiveRecord::Base
     end
     arr
   end
-
+  
+  def total
+    @total ||= get_total!
+  end
+  
   private
   
   def set_date!
     self.date = Time.now if self.date.nil?
   end
-  
-  def total!
+
+  def get_total!
+    sum = 0    
     products.each_pair do |k0, v0|
       v0.each_pair do |k1, v1|
-        self.total += k1 * v1
+        sum += k1 * v1
       end
     end
-    self.save!
+    sum
   end
   
   def invoice

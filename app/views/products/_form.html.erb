@@ -1,49 +1,10 @@
-
-  <div class="group">
-    <%= f.label :code, t("activerecord.attributes.product.code", :default => "Code"), :class => :label %>
-    <%= f.text_field :code, :class => 'text_field' %>
-    <span class="description">Ex: a simple text</span>
-  </div>
-
-  <div class="group">
-    <%= f.label :name, t("activerecord.attributes.product.name", :default => "Name"), :class => :label %>
-    <%= f.text_field :name, :class => 'text_field' %>
-    <span class="description">Ex: a simple text</span>
-  </div>
-
-  <div class="group">
-    <%= f.label :description, t("activerecord.attributes.product.description", :default => "Description"), :class => :label %>
-    <%= f.text_area :description, :class => 'text_area' %>
-    <span class="description">Ex: a simple text</span>
-  </div>
-
-  <div class="group">
-    <%= f.label :wholesale, t("activerecord.attributes.product.wholesale", :default => "Wholesale"), :class => :label %>
-    <%= f.text_field :wholesale, :class => 'text_field' %>
-    <span class="description">Ex: a simple text</span>
-  </div>
-
-  <div class="group">
-    <%= f.label :retail, t("activerecord.attributes.product.retail", :default => "Retail"), :class => :label %>
-    <%= f.text_field :retail, :class => 'text_field' %>
-    <span class="description">Ex: a simple text</span>
-  </div>
-
-  <div class="group">
-    <%= f.label :consigner_id, t("activerecord.attributes.product.consigner_id", :default => "Consigner"), :class => :label %>
-    <%= f.text_field :consigner_id, :class => 'text_field' %>
-    <span class="description">Ex: a simple text</span>
-  </div>
-
-  <div class="group">
-    <%= f.label :business_id, t("activerecord.attributes.product.business_id", :default => "Business"), :class => :label %>
-    <%= f.text_field :business_id, :class => 'text_field' %>
-    <span class="description">Ex: a simple text</span>
-  </div>
+<% semantic_form_for [@business, @product] do |f| %>
+	<%= f.inputs %>
+<% end %>
         
 <div class="group navform wat-cf">
   <button class="button" type="submit">
     <%= image_tag("web-app-theme/tick.png", :alt => "#{t("web-app-theme.save", :default => "Save")}") %> <%= t("web-app-theme.save", :default => "Save") %>
   </button>  
-  <%= link_to "#{image_tag("web-app-theme/cross.png", :alt => "#{t("web-app-theme.cancel", :default => "Cancel")}")} #{t("web-app-theme.cancel", :default => "Cancel")}", products_path, :class => "button" %> 
+  <%= link_to "#{image_tag("web-app-theme/cross.png", :alt => "#{t("web-app-theme.cancel", :default => "Cancel")}")} #{t("web-app-theme.cancel", :default => "Cancel")}", business_products_path, :class => "button" %> 
 </div>

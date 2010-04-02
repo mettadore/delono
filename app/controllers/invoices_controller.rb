@@ -1,6 +1,5 @@
 class InvoicesController < ApplicationController
-  before_filter :login_required
-  before_filter :business
+  before_filter :login_required, :business
   # GET /invoices
   # GET /invoices.xml
   def index
@@ -84,6 +83,22 @@ class InvoicesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def invoice
+    consigner = @business.consigners.find(params[:id])
+    @invoice = Invoice.new(:business_id => @business.id,
+                           :consigner_id => consigner.id)
+    
+    respond_to do |format|
+      if @invoice.save
+        flash[:notice] = "#{consigner.name.humanize} invoiced!"
+        format.html {redirect_to :back}
+      else
+        format.html { render :xml => @invoice.errors}
+      end
+    end
+  end    
+
 
   private
   

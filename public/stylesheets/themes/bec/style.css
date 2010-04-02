@@ -230,6 +230,10 @@ input.checkbox {
   border-bottom: 1px solid #F0F0EE;
 }
 
+.table tr.odd {
+	background-color: #E6FAFA;
+}
+
 /* forms */
 
 .form input.text, .form textarea.textarea {

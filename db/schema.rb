@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(:version => 20100322190419) do
   end
 
   create_table "consigners", :force => true do |t|
-    t.string   "name",          :null => false
+    t.string   "name",                          :null => false
     t.string   "biz_name"
     t.string   "street"
     t.string   "street_2"
@@ -60,15 +60,15 @@ ActiveRecord::Schema.define(:version => 20100322190419) do
     t.integer  "fax"
     t.text     "notes"
     t.date     "last_invoiced"
+    t.integer  "percentage",    :default => 30, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "invoices", :force => true do |t|
-    t.integer  "business_id",                   :null => false
-    t.integer  "consigner_id",                  :null => false
-    t.date     "date",                          :null => false
-    t.float    "total",        :default => 0.0, :null => false
+    t.integer  "business_id",  :null => false
+    t.integer  "consigner_id", :null => false
+    t.date     "date",         :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

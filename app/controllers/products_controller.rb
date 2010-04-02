@@ -1,7 +1,5 @@
 class ProductsController < ApplicationController
-  before_filter :login_required
-  before_filter :business
-
+  before_filter :login_required, :business
   # GET /products
   # GET /products.xml
   def index
@@ -48,7 +46,7 @@ class ProductsController < ApplicationController
     respond_to do |format|
       if @product.save
         flash[:notice] = 'Product was successfully created.'
-        format.html { redirect_to(@product) }
+        format.html { redirect_to business_products_url(@business) }
         format.xml  { render :xml => @product, :status => :created, :location => @product }
       else
         format.html { render :action => "new" }
@@ -65,7 +63,7 @@ class ProductsController < ApplicationController
     respond_to do |format|
       if @product.update_attributes(params[:product])
         flash[:notice] = 'Product was successfully updated.'
-        format.html { redirect_to(@product) }
+        format.html { redirect_to business_product_path(@business, @product) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -81,16 +79,14 @@ class ProductsController < ApplicationController
     @product.destroy
 
     respond_to do |format|
-      format.html { redirect_to(products_url) }
+      format.html { redirect_to business_products_url(@business) }
       format.xml  { head :ok }
     end
   end
 
   def sell
     product = @business.products.find(params[:id])
-    @transaction = Transaction.new( :business_id => product.business.id,
-                                    :product_id => product.id,
-                                    :transaction_type_id => TransactionType.find_by_verb("sell").id)
+    @transaction = transact(product, "sell")
     
     respond_to do |format|
       if @transaction.save
@@ -102,7 +98,69 @@ class ProductsController < ApplicationController
     end
   end    
 
+  def return
+    product = @business.products.find(params[:id])
+    @transaction = transact(product, "return")
+    
+    respond_to do |format|
+      if @transaction.save
+        flash[:notice] = "One Product code #{product.code} returned!"
+        format.html {redirect_to :back}
+      else
+        format.html { render :action => "return"}
+      end
+    end
+  end    
+
+  def restock
+    product = @business.products.find(params[:id])
+    @transaction = transact(product, "restock")
+    
+    respond_to do |format|
+      if @transaction.save
+        flash[:notice] = "One Product code #{product.code} restocked!"
+        format.html {redirect_to :back}
+      else
+        format.html { render :action => "restock"}
+      end
+    end
+  end    
+
+  def receive
+    product = @business.products.find(params[:id])
+    @transaction = transact(product, "receive")
+    
+    respond_to do |format|
+      if @transaction.save
+        flash[:notice] = "One Product code #{product.code} received!"
+        format.html {redirect_to :back}
+      else
+        format.html { render :action => "received"}
+      end
+    end
+  end    
+
+  def lose
+    product = @business.products.find(params[:id])
+    @transaction = transact(product, "lose")
+    
+    respond_to do |format|
+      if @transaction.save
+        flash[:notice] = "One Product code #{product.code} lost!"
+        format.html {redirect_to :back}
+      else
+        format.html { render :action => "lose"}
+      end
+    end
+  end    
+
   private
+
+  def transact(product, verb)
+    Transaction.new(:business_id => product.business.id,
+                    :product_id => product.id,
+                    :transaction_type_id => TransactionType.find_by_verb(verb).id)
+  end
   
   def business
     @business = Business.find(current_user.manages.first)

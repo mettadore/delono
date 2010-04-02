@@ -1,7 +1,14 @@
 <div class="block">
-  <h3>Simple Block</h3>
+  <h3>Quick Add Consigner</h3>
   <div class="content">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    <% semantic_form_for [@business, Consigner.new], :url => {:action => 'create'}	do |f| %>
+			<% f.inputs do %>
+				<%= f.input :name %>
+				<%= f.input :biz_name %>
+				<%= f.input :percentage, :label => "Percentage above wholesale" %>
+			<% end %>
+			<%= f.commit_button %>
+		<% end %>
   </div>
 </div>
 <div class="block">

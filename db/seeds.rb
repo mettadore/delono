@@ -31,7 +31,7 @@ B2.save!
 
 C1 = Consigner.new(:name => "John Doe", :biz_name => "Computer Stuff")
 C1.save!
-C2 = Consigner.new(:name => "John Smith", :biz_name => "Clothing Stuff")
+C2 = Consigner.new(:name => "John Smith", :biz_name => "Clothing Stuff", :percentage => 25)
 C2.save!
 C3 = Consigner.new(:name => "Jane Johnson", :biz_name => "Perfumy Stuff")
 C3.save!
@@ -76,7 +76,6 @@ end
 
 Transaction.create(:business_id => B2.id, :product_id => P8.id, :transaction_type_id => TransactionType.type_id("sold"))
 Transaction.create(:business_id => B2.id, :product_id => P8.id, :transaction_type_id => TransactionType.type_id("sold"), :wholesale => 30)
-
 Transaction.create(:business_id => B1.id, :product_id => P9.id, :transaction_type_id => TransactionType.type_id("received"))
 
 [P1, P2, P3, P4, P5, P6, P7, P8].each do |p|
