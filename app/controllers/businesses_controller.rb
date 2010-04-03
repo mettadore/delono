@@ -14,7 +14,7 @@ class BusinessesController < ApplicationController
   # GET /businesses/1
   # GET /businesses/1.xml
   def show
-    @business = Business.find(params[:id])
+    @business = Business.find_by_subdomain(current_subdomain)
 
     respond_to do |format|
       format.html # show.html.erb

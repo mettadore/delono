@@ -15,10 +15,15 @@ class InvoicesController < ApplicationController
   # GET /invoices/1.xml
   def show
     @invoice = Invoice.find(params[:id])
+    # These are for convenience, just to save some typing:
+    @business = @invoice.business
+    @consigner = @invoice.consigner
+    @products = @invoice.products
 
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @invoice }
+      format.pdf { render :layout => false }
     end
   end
 
@@ -98,12 +103,5 @@ class InvoicesController < ApplicationController
       end
     end
   end    
-
-
-  private
-  
-  def business
-    @business = Business.find(current_user.manages.first)
-  end
 
 end

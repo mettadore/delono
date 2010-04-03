@@ -1,9 +1,9 @@
 class ProductsController < ApplicationController
-  before_filter :login_required, :business
+  before_filter :login_required, :get_business_by_subdomain
   # GET /products
   # GET /products.xml
   def index
-    @products = @business.products
+    @products = @current_business.products
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,7 +14,7 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.xml
   def show
-    @product = @business.products.find(params[:id])
+    @product = @current_business.products.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -25,7 +25,7 @@ class ProductsController < ApplicationController
   # GET /products/new
   # GET /products/new.xml
   def new
-    @product = @business.products.build
+    @product = @current_business.products.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,18 +35,18 @@ class ProductsController < ApplicationController
 
   # GET /products/1/edit
   def edit
-    @product = @business.products.find(params[:id])
+    @product = @current_business.products.find(params[:id])
   end
 
   # POST /products
   # POST /products.xml
   def create
-    @product = @business.products.build(params[:product])
+    @product = @current_business.products.build(params[:product])
 
     respond_to do |format|
       if @product.save
         flash[:notice] = 'Product was successfully created.'
-        format.html { redirect_to business_products_url(@business) }
+        format.html { redirect_to products_url(@business) }
         format.xml  { render :xml => @product, :status => :created, :location => @product }
       else
         format.html { render :action => "new" }
@@ -58,12 +58,12 @@ class ProductsController < ApplicationController
   # PUT /products/1
   # PUT /products/1.xml
   def update
-    @product = @business.products.find(params[:id])
+    @product = @current_business.products.find(params[:id])
 
     respond_to do |format|
       if @product.update_attributes(params[:product])
         flash[:notice] = 'Product was successfully updated.'
-        format.html { redirect_to business_product_path(@business, @product) }
+        format.html { redirect_to product_path(@product) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -75,17 +75,17 @@ class ProductsController < ApplicationController
   # DELETE /products/1
   # DELETE /products/1.xml
   def destroy
-    @product = @business.products.find(params[:id])
+    @product = @current_business.products.find(params[:id])
     @product.destroy
 
     respond_to do |format|
-      format.html { redirect_to business_products_url(@business) }
+      format.html { redirect_to products_url(@business) }
       format.xml  { head :ok }
     end
   end
 
   def sell
-    product = @business.products.find(params[:id])
+    product = @current_business.products.find(params[:id])
     @transaction = transact(product, "sell")
     
     respond_to do |format|
@@ -99,7 +99,7 @@ class ProductsController < ApplicationController
   end    
 
   def return
-    product = @business.products.find(params[:id])
+    product = @current_business.products.find(params[:id])
     @transaction = transact(product, "return")
     
     respond_to do |format|
@@ -113,7 +113,7 @@ class ProductsController < ApplicationController
   end    
 
   def restock
-    product = @business.products.find(params[:id])
+    product = @current_business.products.find(params[:id])
     @transaction = transact(product, "restock")
     
     respond_to do |format|
@@ -127,7 +127,7 @@ class ProductsController < ApplicationController
   end    
 
   def receive
-    product = @business.products.find(params[:id])
+    product = @current_business.products.find(params[:id])
     @transaction = transact(product, "receive")
     
     respond_to do |format|
@@ -141,7 +141,7 @@ class ProductsController < ApplicationController
   end    
 
   def lose
-    product = @business.products.find(params[:id])
+    product = @current_business.products.find(params[:id])
     @transaction = transact(product, "lose")
     
     respond_to do |format|
@@ -162,7 +162,4 @@ class ProductsController < ApplicationController
                     :transaction_type_id => TransactionType.find_by_verb(verb).id)
   end
   
-  def business
-    @business = Business.find(current_user.manages.first)
-  end
 end

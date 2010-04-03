@@ -1,11 +1,4 @@
 <div class="block">
-  <div class="secondary-navigation">
-    <ul class="wat-cf">
-      <li class="first"><%= link_to "#{t("web-app-theme.list", :default => "List")}", businesses_path  %></li>
-      <li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_business_path %></li>
-      <li class="active"><%= link_to "#{t("web-app-theme.show", :default => "Show")}", business_path %></li>
-    </ul>
-  </div>          
   <div class="content">
     <div class="inner">
       
@@ -38,12 +31,12 @@
 	        <% @business.consigners.each do |consigner| -%>
 	        <tr class="<%= cycle("odd", "even") %>">
 	          <td><%= consigner.id %></td>
-						<td><%= link_to consigner.name, business_consigner_path(@business, consigner) %></td>
+						<td><%= link_to consigner.name, consigner_path(consigner) %></td>
 						<td><%= consigner.biz_name %></td>
 	          <td class="last">
-	            <%= link_to "#{t("web-app-theme.show", :default => "Show")}", business_consigner_path(@business, consigner) %> |
-	            <%= link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_business_consigner_path(@business, consigner) %> |
-	            <%= link_to "#{t("web-app-theme.delete", :default => "Delete")}", business_consigner_path(@business, consigner), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+	            <%= link_to "#{t("web-app-theme.show", :default => "Show")}", consigner_path(consigner) %> |
+	            <%= link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_consigner_path(consigner) %> |
+	            <%= link_to "#{t("web-app-theme.delete", :default => "Delete")}", consigner_path(consigner), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
 	          </td>
 	        </tr>          
 	        <% end -%>

@@ -24,13 +24,13 @@
       <div id="main-navigation">
         <ul class="wat-cf">
 	 				<li class="<%= controller.controller_path == 'products' ? 'active' : '' %>">
-						<%= link_to "Products", business_products_path(@business) %>
+						<%= link_to "Products", products_path %>
 					</li>
 	 				<li class="<%= controller.controller_path == 'consigners' ? 'active' : '' %>">
-						<%= link_to "Consigners", business_consigners_path(@business) %>
+						<%= link_to "Consigners", consigners_path %>
 					</li>
 				 	<li class="<%= controller.controller_path == 'invoices' ? 'active' : '' %>">
-						<%= link_to "Invoices",	business_invoices_path(@business) %>
+						<%= link_to "Invoices",	invoices_path %>
 					</li>
 				</ul>
       </div>

@@ -1,10 +1,4 @@
 <div class="block">
-  <div class="secondary-navigation">
-    <ul class="wat-cf">
-      <li class="first"><%= link_to "List", business_consigners_path(@business)  %></li>
-      <li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_business_consigner_path(@business) %></li>
-    </ul>
-  </div>          
   <div class="content">
     <div class="inner">
       
@@ -73,9 +67,9 @@
           <%= @consigner.last_invoiced %>
         </p>
       <div class="wat-cf">
-        <%= link_to "#{image_tag("web-app-theme/application_edit.png", :alt => "#{t("web-app-theme.edit", :default=> "Edit")}")} #{t("web-app-theme.edit", :default=> "Edit")}", edit_business_consigner_path(@business, @consigner), :class => "button" %> 
-        <%= link_to "#{image_tag("web-app-theme/cross.png", :alt => "#{t("web-app-theme.delete", :default=> "Delete")}")} #{t("web-app-theme.delete", :default => "Delete")}", business_consigner_path(@business, @consigner), :method => "delete", :class => "button", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
-        <%= link_to "#{image_tag("web-app-theme/tick.png", :alt => "#{t("web-app-theme.invoice", :default=> "Invoice")}")} #{t("web-app-theme.invoice", :default => "Invoice")}", business_consigner_path(@business, @consigner) + "/invoice", :class => "button", :confirm => "#{t("web-app-theme.confirm", :default => "Invoice #{@consigner.name}?")}" %>
+        <%= link_to "#{image_tag("web-app-theme/application_edit.png", :alt => "#{t("web-app-theme.edit", :default=> "Edit")}")} #{t("web-app-theme.edit", :default=> "Edit")}", edit_consigner_path(@consigner), :class => "button" %> 
+        <%= link_to "#{image_tag("web-app-theme/cross.png", :alt => "#{t("web-app-theme.delete", :default=> "Delete")}")} #{t("web-app-theme.delete", :default => "Delete")}", consigner_path(@consigner), :method => "delete", :class => "button", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+        <%= link_to "#{image_tag("web-app-theme/tick.png", :alt => "#{t("web-app-theme.invoice", :default=> "Invoice")}")} #{t("web-app-theme.invoice", :default => "Invoice")}", consigner_path(@consigner) + "/invoice", :class => "button", :confirm => "#{t("web-app-theme.confirm", :default => "Invoice #{@consigner.name}?")}" %>
       </div>      
     </div>
   </div>

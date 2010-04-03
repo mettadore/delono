@@ -1,10 +1,9 @@
 class ConsignersController < ApplicationController
   before_filter :login_required
-  before_filter :business
   # GET /consigners
   # GET /consigners.xml
   def index
-    @consigners = @business.consigners
+    @consigners = @current_business.consigners
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,7 +14,7 @@ class ConsignersController < ApplicationController
   # GET /consigners/1
   # GET /consigners/1.xml
   def show
-    @consigner = @business.consigners.find(params[:id])
+    @consigner = @current_business.consigners.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -26,7 +25,7 @@ class ConsignersController < ApplicationController
   # GET /consigners/new
   # GET /consigners/new.xml
   def new
-    @consigner = @business.consigners.build
+    @consigner = @current_business.consigners.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -36,13 +35,13 @@ class ConsignersController < ApplicationController
 
   # GET /consigners/1/edit
   def edit
-    @consigner = @business.consigners.find(params[:id])
+    @consigner = @current_business.consigners.find(params[:id])
   end
 
   # POST /consigners
   # POST /consigners.xml
   def create
-    @consigner = @business.consigners.build(params[:consigner])
+    @consigner = @current_business.consigners.build(params[:consigner])
 
     respond_to do |format|
       if @consigner.save
@@ -59,7 +58,7 @@ class ConsignersController < ApplicationController
   # PUT /consigners/1
   # PUT /consigners/1.xml
   def update
-    @consigner = @business.consigners.find(params[:id])
+    @consigner = @current_business.consigners.find(params[:id])
 
     respond_to do |format|
       if @consigner.update_attributes(params[:consigner])
@@ -76,19 +75,13 @@ class ConsignersController < ApplicationController
   # DELETE /consigners/1
   # DELETE /consigners/1.xml
   def destroy
-    @consigner = @business.consigners.find(params[:id])
+    @consigner = @current_business.consigners.find(params[:id])
     @consigner.destroy
 
     respond_to do |format|
       format.html { redirect_to(consigners_url) }
       format.xml  { head :ok }
     end
-  end
-
-  private
-  
-  def business
-    @business = Business.find(current_user.manages.first)
   end
 
 end

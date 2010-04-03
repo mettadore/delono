@@ -1,10 +1,4 @@
 <div class="block">
-  <div class="secondary-navigation">
-    <ul class="wat-cf">
-	    <li class="first active"><%= link_to "List", business_consigners_path(@business)  %></li>
-  		<li><%= link_to "New", new_business_consigner_path(@business) %></li>
-    </ul>
-  </div>          
   <div class="content">          
     <h2 class="title"><%= t("web-app-theme.all", :default => "All")  %> Consigners</h2>
     <div class="inner">
@@ -19,11 +13,11 @@
         <% @consigners.each do |consigner| -%>
         <tr class="<%= cycle("odd", "even") %>">
           <td><%= consigner.id %></td>
-					<td><%= link_to consigner.name, business_consigner_path(@business, consigner) %></td>
+					<td><%= link_to consigner.name, consigner_path(consigner) %></td>
 					<td><%= consigner.biz_name %></td>
 					<td><%= consigner.last_invoiced %></td>
           <td class="last">
-            <%= link_to "Invoice!", business_consigner_path(@business, consigner) + "/invoice"%>
+            <%= link_to "Invoice!", consigner_path(consigner) + "/invoice"%>
           </td>
         </tr>          
         <% end -%>

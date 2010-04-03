@@ -1,15 +1,16 @@
 ActionController::Routing::Routes.draw do |map|
+
+  map.business_root '', :controller => 'businesses', :action => 'show', :conditions => {:subdomain => /.+/}
   
-  %w(receive sell restock return loose).each do |act|
-    map.connect "businesses/:business_id/products/:id/#{act}", :controller => 'products', :action => act
-  end
-  map.connect "businesses/:business_id/consigners/:id/invoice", :controller => 'invoices', :action => 'invoice'
+#  %w(receive sell restock return loose).each do |act|
+#    map.connect "businesses/:business_id/products/:id/#{act}", :controller => 'products', :action => act
+#  end
+#  map.connect "businesses/:business_id/consigners/:id/invoice", :controller => 'invoices', :action => 'invoice'
   
-  map.resources :businesses do |business|
-    business.resources :consigners
-    business.resources :products
-    business.resources :invoices
-  end    
+  map.resources :businesses
+  map.resources :consigners
+  map.resources :products
+  map.resources :invoices
 
   map.signup 'signup', :controller => 'users', :action => 'new'
   map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'

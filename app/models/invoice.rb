@@ -10,6 +10,8 @@ class Invoice < ActiveRecord::Base
   
   def products; @products ||= get_products; end
 
+  # {product {wholesale => number},
+  #  product {wholesale => number}}
   def get_products
     arr = Hash.new
     invoiced_transactions.each do |trans|

@@ -1,11 +1,4 @@
 <div class="block">
-  <div class="secondary-navigation">
-    <ul class="wat-cf">
-      <li class="first"><%= link_to "List", business_invoices_path(@business)  %></li>
-      <li><%= link_to"New", new_business_invoice_path(@business) %></li>
-      <li class="active"><%= link_to "Shown", business_invoice_path(@business) %></li>
-    </ul>
-  </div>          
   <div class="content">
     <div class="inner">
       <h2>Invoice #<%= @invoice.id %></h2>
@@ -25,8 +18,8 @@
 	        <% @invoice.products.each_pair do |product, details| -%>
 						<% details.each_pair do |wholesale, num| -%>
 	        <tr class="<%= cycle("odd", "even") %>">
-	          <td><%= link_to product.code, business_product_path(@business,product) %></td>
-						<td><%= link_to product.name, business_product_path(@business, product) %>
+	          <td><%= link_to product.code, product_path(@business,product) %></td>
+						<td><%= link_to product.name, product_path(product) %>
 						<td><%= num %></td>
 						<td><%= wholesale %></td>
 	          <td class="last"><%= num * wholesale %></td>
@@ -34,10 +27,11 @@
 					<% end -%>
 	        <% end -%>
 	      </table>
-		 <h3 style="align:right">Total Due: <%= @invoice.total %></h3>
+		 <h3 style="float:right">Total Due: <%= @invoice.total %></h3>
       <div class="wat-cf">
-        <%= link_to "#{image_tag("web-app-theme/application_edit.png", :alt => "#{t("web-app-theme.edit", :default=> "Edit")}")} #{t("web-app-theme.edit", :default=> "Edit")}", edit_business_invoice_path(@business, @invoice), :class => "button" %> 
-        <%= link_to "#{image_tag("web-app-theme/cross.png", :alt => "#{t("web-app-theme.delete", :default=> "Delete")}")} #{t("web-app-theme.delete", :default => "Delete")}", business_invoice_path(@business, @invoice), :method => "delete", :class => "button", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+        <%= link_to "#{image_tag("web-app-theme/application_edit.png", :alt => "#{t("web-app-theme.edit", :default=> "Edit")}")} #{t("web-app-theme.edit", :default=> "Edit")}", edit_invoice_path(@invoice), :class => "button" %> 
+        <%= link_to "#{image_tag("web-app-theme/cross.png", :alt => "#{t("web-app-theme.delete", :default=> "Delete")}")} #{t("web-app-theme.delete", :default => "Delete")}", invoice_path(@invoice), :method => "delete", :class => "button", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+				<%= link_to "PDF Invoice", invoice_path(@invoice, :format => "pdf") %>
       </div>      
     </div>
   </div>

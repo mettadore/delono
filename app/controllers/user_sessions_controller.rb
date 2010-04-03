@@ -9,7 +9,7 @@ class UserSessionsController < ApplicationController
     if @user_session.save
       @business = Business.find(@user_session.user.manages.first)
       flash[:notice] = "Logged in successfully."
-      redirect_to_target_or_default(business_products_url(@business))
+      redirect_to_target_or_default(products_url(@business))
     else
       render :action => 'new'
     end

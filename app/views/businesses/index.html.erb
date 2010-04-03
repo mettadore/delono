@@ -18,8 +18,8 @@
         <% @businesses.each do |business| -%>
         <tr class="<%= cycle("odd", "even") %>">
           <td><%= business.id %></td>
-					<td><%= link_to business.name, business_path(business) %></td>
-					<td><%= link_to business.owner.username, user_path(business.owner) %></td>
+					<td><%= link_to business.name, business_root_url(:subdomain => business.subdomain) %></td>
+					<td><%= link_to business.owner.email, user_path(business.owner) %></td>
           <td class="last">
             <%= link_to "#{t("web-app-theme.show", :default => "Show")}", business_path(business) %> |
             <%= link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_business_path(business) %> |

@@ -1,10 +1,4 @@
 <div class="block">
-  <div class="secondary-navigation">
-    <ul class="wat-cf">
-	    <li class="first active"><%= link_to "List", business_products_path(@business)  %></li>
-  		<li><%= link_to "New", new_business_product_path(@business) %></li>
-    </ul>
-  </div>          
   <div class="content">          
     <h2 class="title"><%= t("web-app-theme.all", :default => "All")  %> Products</h2>
     <div class="inner">
@@ -24,21 +18,21 @@
         </tr>
         <% @products.each do |product| -%>
         <tr class="<%= cycle("odd", "even") %>">
-					<td><%= link_to product.code, [@business, product] %></td>
-          <td><%= link_to product.name, business_product_path(@business, product) %></td>
-          <td><%= link_to product.consigner.biz_name ? product.consigner.biz_name : product.consigner.name, business_consigner_path(@business, product.consigner) %></td>
+					<td><%= link_to product.code, product %></td>
+          <td><%= link_to product.name, product_path(product) %></td>
+          <td><%= link_to product.consigner.biz_name ? product.consigner.biz_name : product.consigner.name, consigner_path(product.consigner) %></td>
 					<td><%= number_to_currency product.wholesale %></td>
 					<td><%= number_to_currency product.retail %></td>
 					<td><%= product.count > 0 ? product.count : "No Stock" %></td>
 					<td><%= product.sales_this_period %></td>
 					<td><%= number_to_currency product.income_this_period %></td>
 					<td><%= number_to_currency product.cost_this_period %></td>
-					<td><%= link_to "Sell!", business_product_path(@business, product) + "/sell" if product.count > 0 %></td>
+					<td><%= link_to "Sell!", product_path(product) + "/sell" if product.count > 0 %></td>
 					<td class ="last">
-						<%= link_to "Receive", business_product_path(@business, product) + "/receive" %> |
-						<%= link_to "Restock", business_product_path(@business, product) + "/restock" %><br />
-						<%= link_to "Return", business_product_path(@business, product) + "/return" %> |
-						<%= link_to "Lose", business_product_path(@business, product) + "/lose" %>
+						<%= link_to "Receive", product_path(product) + "/receive" %> |
+						<%= link_to "Restock", product_path(product) + "/restock" %><br />
+						<%= link_to "Return", product_path(product) + "/return" %> |
+						<%= link_to "Lose", product_path(product) + "/lose" %>
 						
         </tr>          
         <% end -%>
