@@ -1,5 +1,5 @@
 class InvoicesController < ApplicationController
-  before_filter :login_required, :business
+  before_filter :login_required, :get_business_by_subdomain
   # GET /invoices
   # GET /invoices.xml
   def index

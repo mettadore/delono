@@ -1,5 +1,5 @@
 class ConsignersController < ApplicationController
-  before_filter :login_required
+  before_filter :login_required, :get_business_by_subdomain
   # GET /consigners
   # GET /consigners.xml
   def index

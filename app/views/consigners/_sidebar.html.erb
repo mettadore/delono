@@ -2,7 +2,7 @@
 <div class="block">
   <h3>Quick Add Consigner</h3>
   <div class="content">
-    <% semantic_form_for [@business, Consigner.new], :url => {:action => 'create'}	do |f| %>
+    <% semantic_form_for Consigner.new, :url => {:action => 'create'}	do |f| %>
 			<% f.inputs do %>
 				<%= f.input :name %>
 				<%= f.input :biz_name %>
