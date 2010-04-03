@@ -3,6 +3,7 @@ class UserSessionsController < ApplicationController
   def new
     if current_subdomain.nil?
       flash[:notice] = "You must log in through your subdomain"
+      redirect_to root_url
     end
     @user_session = UserSession.new
   end

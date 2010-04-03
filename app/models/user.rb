@@ -39,6 +39,6 @@ class User < ActiveRecord::Base
   private
   
   def set_invitation_limit
-    self.invitation_limit = 4
+    self.invitation_limit = 0
   end
 end

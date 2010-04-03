@@ -46,7 +46,7 @@ class BusinessesController < ApplicationController
     respond_to do |format|
       if @business.save
         flash[:notice] = 'Business was successfully created.'
-        format.html { redirect_to(@business) }
+        format.html { redirect_to business_root(:subdomain => @business.subdomain) }
         format.xml  { render :xml => @business, :status => :created, :location => @business }
       else
         format.html { render :action => "new" }

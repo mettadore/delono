@@ -6,14 +6,18 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Major.create(:name => 'Daley', :city => cities.first)
 
-U1 = User.new(:first_name => "John", :last_name => "Metta", :email => "john@jmetta.org", :password => "et48ID", :password_confirmation => "et48ID")
+I1 = Invitation.create(:recipient_email => "john@mettadore.com")
+I1.save!
+
+U1 = User.new(:first_name => "John", :last_name => "Metta", :email => "john@mettadore.com", :password => "et48ID", :password_confirmation => "et48ID", :invitation_id => I1.id)
 U1.save!
 
-U2 = User.new(:first_name => "Delona", :last_name => "Campos-Davis", :email => "info@smallplanettrading.com", :password => "mall202", :password_confirmation => "mall202")
+I2 = Invitation.create(:recipient_email => "info@smallplanettrading.com")
+I2.save!
+
+U2 = User.new(:first_name => "Delona", :last_name => "Campos-Davis", :email => "info@smallplanettrading.com", :password => "mall202", :password_confirmation => "mall202", :invitation_id => I2.id)
 U2.save!
 
-U3 = User.create(:first_name => "Karen", :last_name => "Murphy-Mendez", :email => "murphymendez@gmail.com", :password => "mall202", :password_confirmation => "mall202")
-U3.save!
 B1 = Business.new(:name => "John Metta Consulting", :owner_id => U1.id, :street => "651 Floral Place", 
                 :city => "Hood River", :state => "oregon", :subdomain => "mettadore",
                 :zipcode => 97031, :phone => 5413873872, :website => "http://mettadore.com",

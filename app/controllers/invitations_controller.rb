@@ -19,7 +19,7 @@ class InvitationsController < ApplicationController
     respond_to do |format|
       if @invitation.save
         if logged_in?        
-          Mailer.deliver_invitation(@invitation, signup_url(@invitation.token))
+          Mailer.deliver_invitation(@invitation, signup_url(@invitation.token, :subdomain => false))
           flash[:notice] = 'Thanks, we\'ve sent your invitation.'
           format.html { redirect_to business_root_url }
           format.xml  { render :xml => @invitation, :status => :created, :location => @invitation }
