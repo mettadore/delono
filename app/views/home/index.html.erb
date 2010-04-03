@@ -1,0 +1,16 @@
+      <div id="content">
+          <h2>Consignment sales tracking that's eas&mdash; at least not <em>more</em> difficult</h2>
+					<p>We're in private beta. If you'd like to participate in this beta, please enter your email 
+						address below and we'll notify you when we're ready to accept more users (Don't worry, we
+						will never sell, give away, or make fun of your email address)</p>
+						
+						<% form_for Invitation.new do |f| %>
+							<p>
+								<%= f.label :recipient_email, "Your Email:" %>
+								<%= f.text_field :recipient_email %>
+								<%= f.submit 'Submit' %>
+							</p>
+						<% end %>
+      </div>
+      
+      <div id="footer">&nbsp;</div>

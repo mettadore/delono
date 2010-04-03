@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-
+  
   map.business_root '', :controller => 'businesses', :action => 'show', :conditions => {:subdomain => /.+/}
   
 #  %w(receive sell restock return loose).each do |act|
@@ -11,8 +11,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :consigners
   map.resources :products
   map.resources :invoices
+  map.resources :invitations
 
-  map.signup 'signup', :controller => 'users', :action => 'new'
+  map.signup 'signup/:invitation_token', :controller => 'users', :action => 'new'
   map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'
   map.login 'login', :controller => 'user_sessions', :action => 'new'
   map.resources :user_sessions

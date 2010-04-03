@@ -1,6 +1,6 @@
 default_run_options[:pty] = true
-set :application, "eco.mettadore.com"
-set :repository,  "git@github.com:mettadore/ecoapprentice.git"
+set :application, "delono.com"
+set :repository,  "git@github.com:mettadore/delono.git"
 
 set :scm, "git"
 set :scm_passphrase, "Un+c2WFeH"
@@ -12,7 +12,7 @@ set :branch, "master"
 set :repository_cache, "git_cache"
 set :deploy_via, :copy
 
-set :deploy_to, "/webapps/ecoapprentice"
+set :deploy_to, "/webapps/delono"
 
 role :web, application                          # Your HTTP server, Apache/etc
 role :app, application                          # This may be the same as your `Web` server
@@ -32,7 +32,7 @@ namespace :deploy do
     task t, :roles => :app do; end
   end
   desc "Link in the production database.yml" 
-  task :after_update_code do
+  after :update_code do
     run "ln -nfs #{deploy_to}/#{shared_dir}/config/database.yml #{release_path}/config/database.yml" 
   end
 

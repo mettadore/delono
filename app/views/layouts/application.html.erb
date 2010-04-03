@@ -15,8 +15,13 @@
 					<% if current_user %>
 						<li><%= link_to "Hello #{current_user.first_name}", edit_user_path(current_user) %></li>
 						<li><%= link_to "Logout", logout_path %></li>
+						<% if current_user.invitation_limit > 0 %>
+							<br/><li>
+								<%= link_to 'Invite a Friend!', new_invitation_path %>
+								(<%= current_user.invitation_limit %> invites left)
+							</li>
+						<% end %>
 					<% else %>
-	          <li><%= link_to "Register", signup_path %></li>
 	          <li><%= link_to "Login", login_path %></li>
 					<% end %>
         </ul>

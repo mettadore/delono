@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100322190419) do
+ActiveRecord::Schema.define(:version => 20100403221709) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "business_id"
@@ -61,6 +61,15 @@ ActiveRecord::Schema.define(:version => 20100322190419) do
     t.text     "notes"
     t.date     "last_invoiced"
     t.integer  "percentage",    :default => 30, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "invitations", :force => true do |t|
+    t.integer  "sender_id"
+    t.string   "recipient_email"
+    t.string   "token"
+    t.datetime "sent_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -136,6 +145,8 @@ ActiveRecord::Schema.define(:version => 20100322190419) do
     t.string   "current_login_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "invitation_id"
+    t.integer  "invitation_limit"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
