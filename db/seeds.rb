@@ -21,7 +21,6 @@ U2.save!
 B1 = Business.new(:name => "John Metta Consulting", :owner_id => U1.id, :street => "651 Floral Place", 
                 :city => "Hood River", :state => "oregon", :subdomain => "mettadore",
                 :zipcode => 97031, :phone => 5413873872, :website => "http://mettadore.com",
-                :image => File.open("/Users/john/Dropbox/Pictures/John_Oahu.jpg"),
                 :email => "john@mettadore.com")
 B1.save!
 
@@ -29,7 +28,6 @@ B1.save!
 B2 = Business.new(:name => "Small Planet Trading", :owner_id => U2.id, :street => "202 Cascade Ave", 
                 :street_2 => "Suite B", :city => "Hood River", :state => "oregon", :subdomain => "smallplanet",
                 :zipcode => 97031, :phone => 5413872008, :website => "http://smallplanettrading.com",
-                :image => File.open("/Users/john/Dropbox/Hydrasi/MixingZone/smallplanetlogo.jpg"),
                 :email => "info@smallplanettrading.com")
 B2.save!
 
