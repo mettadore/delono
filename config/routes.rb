@@ -2,10 +2,10 @@ ActionController::Routing::Routes.draw do |map|
   
   map.business_root '', :controller => 'businesses', :action => 'show', :conditions => {:subdomain => /.+/}
   
-#  %w(receive sell restock return loose).each do |act|
-#    map.connect "businesses/:business_id/products/:id/#{act}", :controller => 'products', :action => act
-#  end
-#  map.connect "businesses/:business_id/consigners/:id/invoice", :controller => 'invoices', :action => 'invoice'
+  %w(receive sell restock return loose).each do |act|
+    map.connect "products/:id/#{act}", :controller => 'products', :action => act
+  end
+  map.connect "consigners/:id/invoice", :controller => 'invoices', :action => 'invoice'
   
   map.resources :businesses
   map.resources :consigners
