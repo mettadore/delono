@@ -9,7 +9,7 @@
 I1 = Invitation.create(:recipient_email => "john@mettadore.com")
 I1.save!
 
-U1 = User.new(:first_name => "John", :last_name => "Metta", :email => "john@mettadore.com", :password => "et48ID", :password_confirmation => "et48ID", :invitation_id => I1.id)
+U1 = User.new(:first_name => "John", :last_name => "Metta", :email => "john@mettadore.com", :password => "abc123", :password_confirmation => "abc123", :invitation_id => I1.id)
 U1.save!
 
 I2 = Invitation.create(:recipient_email => "info@smallplanettrading.com")
