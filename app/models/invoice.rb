@@ -1,10 +1,11 @@
 class Invoice < ActiveRecord::Base
   belongs_to  :business
   belongs_to  :consigner
+  has_one     :last_for,  :class_name => 'Consigner'
   validates_presence_of   :business_id, :consigner_id, :date
   
   before_validation :set_date!
-  after_save :invoice
+  after_save :update_invoicing
 
   def invoiced_transactions; Transaction.find_all_by_invoice_id(id); end
   
@@ -42,10 +43,11 @@ class Invoice < ActiveRecord::Base
     sum
   end
   
-  def invoice
+  def update_invoicing
     Product.by_business_and_consigner(business_id, consigner_id).each do |prod|
       Transaction.sold_and_lost(prod.id).each{ |trans| trans.invoice!(id)}
     end
+    consigner.invoice!(self)
   end
 
 end

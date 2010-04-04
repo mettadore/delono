@@ -15,7 +15,7 @@
           <td><%= consigner.id %></td>
 					<td><%= link_to consigner.name, consigner_path(consigner) %></td>
 					<td><%= consigner.biz_name %></td>
-					<td><%= consigner.last_invoiced %></td>
+					<td><%= link_to consigner.last_invoice.date, invoice_path(consigner.last_invoice) if consigner.last_invoice %></td>
           <td class="last">
             <%= link_to "Invoice!", consigner_path(consigner) + "/invoice"%>
           </td>

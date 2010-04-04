@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100403221709) do
+ActiveRecord::Schema.define(:version => 20100404201828) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "business_id"
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(:version => 20100403221709) do
   end
 
   create_table "consigners", :force => true do |t|
-    t.string   "name",                          :null => false
+    t.string   "name",                       :null => false
     t.string   "biz_name"
     t.string   "street"
     t.string   "street_2"
@@ -59,10 +59,10 @@ ActiveRecord::Schema.define(:version => 20100403221709) do
     t.string   "website"
     t.integer  "fax"
     t.text     "notes"
-    t.date     "last_invoiced"
-    t.integer  "percentage",    :default => 30, :null => false
+    t.integer  "percentage", :default => 30, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "invoice_id"
   end
 
   create_table "invitations", :force => true do |t|

@@ -13,7 +13,7 @@
       <div id="user-navigation">
         <ul class="wat-cf">
 					<% if current_user %>
-						<li><%= link_to "Hello #{current_user.first_name}", edit_user_path(current_user) %></li>
+						<li><%= link_to "Hello #{current_user.first_name}", user_path(current_user) %></li>
 						<li><%= link_to "Logout", logout_path %></li>
 						<% if current_user.invitation_limit > 0 %>
 							<br/><li>
