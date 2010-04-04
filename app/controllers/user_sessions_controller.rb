@@ -15,7 +15,7 @@ class UserSessionsController < ApplicationController
       flash[:notice] = "Logged in successfully."
       redirect_to_target_or_default(products_url(@business))
     else
-      render :action => 'new'
+      render :xml => @user_session.errors, :status => :unprocessable_entity 
     end
   end
   
