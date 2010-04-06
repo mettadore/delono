@@ -25,8 +25,8 @@ class Consigner < ActiveRecord::Base
   end
   
   def humanize_name
-    self.name = self.name.humanize
-    self.biz_name = self.biz_name.humanize if attribute_present?("biz_name")
+    self.name = self.name.humanize.titleize
+    self.biz_name = self.biz_name.humanize.titleize if attribute_present?("biz_name")
   end
 
 end
