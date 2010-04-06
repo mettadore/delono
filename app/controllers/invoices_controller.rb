@@ -91,7 +91,7 @@ class InvoicesController < ApplicationController
 
   def invoice
     consigner = @current_business.consigners.find(params[:id])
-    @invoice = Invoice.new(:business_id => @business.id,
+    @invoice = Invoice.new(:business_id => @current_business.id,
                            :consigner_id => consigner.id)
     
     respond_to do |format|

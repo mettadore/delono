@@ -64,7 +64,7 @@
 
         <p>
           <b><%= t("activerecord.attributes.consigner.last_invoiced", :default => t("activerecord.labels.last_invoiced", :default => "Last invoiced")) %>:</b>
-          <%= @consigner.last_invoice.date %>
+          <%= @consigner.last_invoice.date if @consigner.last_invoice %>
         </p>
       <div class="wat-cf">
         <%= link_to "#{image_tag("web-app-theme/application_edit.png", :alt => "#{t("web-app-theme.edit", :default=> "Edit")}")} #{t("web-app-theme.edit", :default=> "Edit")}", edit_consigner_path(@consigner), :class => "button" %> 
