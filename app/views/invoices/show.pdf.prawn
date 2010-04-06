@@ -33,7 +33,7 @@ pdf.move_down 20
 items = @products.each_pair.map do |prod, pair|
 	[
 		prod.name,
-		number_to_currency (pair.values[0]),
+		pair.values[0],
 		number_to_currency (pair.keys[0]),
 		number_to_currency (pair.keys[0] * pair.values[0])
 	]
@@ -41,7 +41,7 @@ end
 
 pdf.table items, :border_style => :grid,
 	:row_colors => ["ffffff", "dddddd"],
-	:headers => ["Product Name", "Wholesale Price", "Number Sold", "Total"],
+	:headers => ["Product Name", "Number Sold","Wholesale Price",  "Total"],
 	:widths => 400,
 	:align => {0 => :left, 1 => :right, 2 => :right, 3 => :right}
 	
