@@ -14,7 +14,7 @@
         <tr class="<%= cycle("odd", "even") %>">
           <td><%= link_to invoice.id, invoice_path(invoice) %></td>
 					<td><%= link_to invoice.date, invoice_path(invoice) %></td>
-					<td><%= link_to invoice.consigner.name, consigner_path(invoice.consigner) %></td>
+					<td><%= link_to invoice.consigner.name_or_bizname, consigner_path(invoice.consigner) %></td>
 					<td><%= link_to "PDF Version", invoice_path(invoice, :format => "pdf") %>
           <td class="last">
             <%= link_to "#{t("web-app-theme.show", :default => "Show")}", invoice_path(invoice) %> |

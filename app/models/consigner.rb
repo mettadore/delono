@@ -11,5 +11,6 @@ class Consigner < ActiveRecord::Base
     self.last_invoice = invoice
     self.save!
   end
-  
+  def bizname; biz_name; end
+  def name_or_bizname; biz_name ? biz_name : name; end
 end

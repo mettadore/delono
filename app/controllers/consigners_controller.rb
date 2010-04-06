@@ -25,7 +25,7 @@ class ConsignersController < ApplicationController
   # GET /consigners/new
   # GET /consigners/new.xml
   def new
-    @consigner = @current_business.consigners.build
+    @consigner = Consigner.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,12 +41,13 @@ class ConsignersController < ApplicationController
   # POST /consigners
   # POST /consigners.xml
   def create
-    @consigner = @current_business.consigners.build(params[:consigner])
+    @consigner = Consigner.new(params[:consigner])
+    @current_business.consigners << @consigner
 
     respond_to do |format|
       if @consigner.save
         flash[:notice] = 'Consigner was successfully created.'
-        format.html { redirect_to(@consigner) }
+        format.html { redirect_to :back }
         format.xml  { render :xml => @consigner, :status => :created, :location => @consigner }
       else
         format.html { render :action => "new" }
