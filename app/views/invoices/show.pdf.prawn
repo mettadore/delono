@@ -41,7 +41,7 @@ end
 
 pdf.table items, :border_style => :grid,
 	:row_colors => ["ffffff", "dddddd"],
-	:headers => ["Product Name", "Number Sold","Wholesale Price",  "Total"],
+	:headers => ["Product Name", "QTY","Wholesale",  "Total"],
 	:widths => 400,
 	:align => {0 => :left, 1 => :right, 2 => :right, 3 => :right}
 	

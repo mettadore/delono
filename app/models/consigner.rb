@@ -1,7 +1,7 @@
 class Consigner < ActiveRecord::Base
   has_many :consigner_businesses
   has_many :businesses,   :through => :consigner_businesses
-  has_many :products
+  has_many :products, :dependent => :destroy
   has_many :invoices
   belongs_to  :last_invoice, :class_name => 'Invoice', :foreign_key => :invoice_id
   

@@ -16,7 +16,9 @@
 					<th>Sell!</th>
           <th class="last">&nbsp;</th>
         </tr>
+				<% total_cost = 0 %>
         <% @products.each do |product| -%>
+					<% total_cost += product.cost_this_period %>
         <tr class="<%= cycle("odd", "even") %>">
 					<td><%= link_to product.code, product %></td>
           <td><%= link_to product.name, product_path(product) %></td>
@@ -37,6 +39,7 @@
         </tr>          
         <% end -%>
       </table>
+			<h3 style="float:right">Total This Period: <%= number_to_currency total_cost %></h3>
       <div class="actions-bar wat-cf">
         <div class="actions">
         </div>
