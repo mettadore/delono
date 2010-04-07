@@ -26,6 +26,7 @@
 	          <th class="first">ID</th>
 						<th>Name</th>
 						<th>Business Name</th>
+						<th>Last Invoiced</th>
 	          <th class="last">&nbsp;</th>
 	        </tr>
 	        <% @business.consigners.each do |consigner| -%>
@@ -33,6 +34,7 @@
 	          <td><%= consigner.id %></td>
 						<td><%= link_to consigner.name, consigner_path(consigner) %></td>
 						<td><%= consigner.biz_name %></td>
+						<td><%= link_to consigner.last_invoice.date, consigner.last_invoice if consigner.last_invoice %>
 	          <td class="last">
 	            <%= link_to "#{t("web-app-theme.show", :default => "Show")}", consigner_path(consigner) %> |
 	            <%= link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_consigner_path(consigner) %> |
