@@ -8,7 +8,12 @@
 <body>
   <div id="container">
     <div id="header">
-      <h1><%= link_to "Delono", root_url %></h1>
+      <h1><% if current_subdomain %>
+				<%= link_to "#{@current_business.name.titleize} on Delono", root_url %>
+				<% else %>
+				<%= link_to "Delono", root_url(:subdomain => false) %>
+				<% end %>
+			</h1>
 			<h3 class="title">Where Microbusiness meets Fair Trade</h3>
       <div id="user-navigation">
         <ul class="wat-cf">
