@@ -1,8 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
-  
+  map.resources :quick_trans
   map.business_root '', :controller => 'businesses', :action => 'show', :conditions => {:subdomain => /.+/}
   
-  %w(receive sell restock return loose).each do |act|
+  %w(receive sell restock return loose multiple).each do |act|
     map.connect "products/:id/#{act}", :controller => 'products', :action => act
   end
   map.connect "consigners/:id/invoice", :controller => 'invoices', :action => 'invoice'

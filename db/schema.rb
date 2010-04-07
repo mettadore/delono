@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(:version => 20100404201828) do
     t.string   "website"
     t.integer  "fax"
     t.text     "notes"
-    t.integer  "percentage", :default => 30, :null => false
+    t.integer  "percentage", :default => 65, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "invoice_id"

@@ -13,7 +13,7 @@ class CreateConsigners < ActiveRecord::Migration
       t.string :website
       t.integer :fax,       :length => 8
       t.text :notes
-      t.integer :percentage,  :null => false, :default => 30
+      t.integer :percentage,  :null => false, :default => 65
 
       t.timestamps
     end

@@ -66,6 +66,10 @@ class Business < ActiveRecord::Base
     self.save
   end
 
+  def total_this_period
+    products.inject(0){|sum, prod| sum + prod.cost_this_period}
+  end
+
   private
   def downcase_subdomain
     self.subdomain.downcase! if attribute_present?("subdomain")

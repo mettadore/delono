@@ -1,0 +1,14 @@
+  <h2><%= consigner.name_or_bizname %></h2>
+	<p>
+  <%= consigner.street + "<br />" if consigner.street%>
+  <%= consigner.street_2 + "<br />" if consigner.street_2 %>
+  <%= consigner.city + "," if consigner.city %> <%= consigner.state %>  <%= consigner.zipcode %><br />
+	<p>
+  <%= consigner.phone + "<br />" if consigner.phone%>
+  <%= consigner.fax + "<br />" if consigner.fax %>
+  <%= mail_to consigner.email + "<br />", consigner.email if consigner.email %>
+  <%= link_to consigner.website + "<br />" if consigner.website %>
+</p>
+<p>
+	<%= consigner.notes if consigner.notes %>
+</p>

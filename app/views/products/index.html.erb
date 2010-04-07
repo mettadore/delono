@@ -1,45 +1,8 @@
 <div class="block">
   <div class="content">          
-    <h2 class="title"><%= t("web-app-theme.all", :default => "All")  %> Products</h2>
+    <h2 class="title">All Products &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(non-invoiced total: <%= number_to_currency @current_business.total_this_period %>)</h2>
     <div class="inner">
-      <table class="table">
-        <tr>             
-          <th class="first">Code</th>
-					<th>Name</th>
-					<th>Consigner</th>
-					<th>Wholesale</th>
-					<th>Retail</th>
-					<th>In Stock</th>
-					<th>Sales</th>
-					<th>Income</th>
-					<th>Cost</th>
-					<th>Sell!</th>
-          <th class="last">&nbsp;</th>
-        </tr>
-				<% total_cost = 0 %>
-        <% @products.each do |product| -%>
-					<% total_cost += product.cost_this_period %>
-        <tr class="<%= cycle("odd", "even") %>">
-					<td><%= link_to product.code, product %></td>
-          <td><%= link_to product.name, product_path(product) %></td>
-          <td><%= link_to product.consigner.name_or_bizname %></td>
-					<td><%= number_to_currency product.wholesale %></td>
-					<td><%= number_to_currency product.retail %></td>
-					<td><%= product.count > 0 ? product.count : "No Stock" %></td>
-					<td><%= product.sales_this_period %></td>
-					<td><%= number_to_currency product.income_this_period %></td>
-					<td><%= number_to_currency product.cost_this_period %></td>
-					<td><%= link_to "Sell!", product_path(product) + "/sell" if product.count > 0 %></td>
-					<td class ="last">
-						<%= link_to "Receive", product_path(product) + "/receive" %> |
-						<%= link_to "Restock", product_path(product) + "/restock" %><br />
-						<%= link_to "Return", product_path(product) + "/return" %> |
-						<%= link_to "Lose", product_path(product) + "/lose" %>
-						
-        </tr>          
-        <% end -%>
-      </table>
-			<h3 style="float:right">Total This Period: <%= number_to_currency total_cost %></h3>
+			<%= render :partial => "shared/products", :locals => {:products => @products} %>
       <div class="actions-bar wat-cf">
         <div class="actions">
         </div>

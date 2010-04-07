@@ -1,76 +1,9 @@
-
-  <div class="group">
-    <%= f.label :name, t("activerecord.attributes.consigner.name", :default => "Name"), :class => :label %>
-    <%= f.text_field :name, :class => 'text_field' %>
-    <span class="description">Ex: a simple text</span>
-  </div>
-
-  <div class="group">
-    <%= f.label :biz_name, t("activerecord.attributes.consigner.biz_name", :default => "Biz name"), :class => :label %>
-    <%= f.text_field :biz_name, :class => 'text_field' %>
-    <span class="description">Ex: a simple text</span>
-  </div>
-
-  <div class="group">
-    <%= f.label :street, t("activerecord.attributes.consigner.street", :default => "Street"), :class => :label %>
-    <%= f.text_field :street, :class => 'text_field' %>
-    <span class="description">Ex: a simple text</span>
-  </div>
-
-  <div class="group">
-    <%= f.label :street_2, t("activerecord.attributes.consigner.street_2", :default => "Street 2"), :class => :label %>
-    <%= f.text_field :street_2, :class => 'text_field' %>
-    <span class="description">Ex: a simple text</span>
-  </div>
-
-  <div class="group">
-    <%= f.label :city, t("activerecord.attributes.consigner.city", :default => "City"), :class => :label %>
-    <%= f.text_field :city, :class => 'text_field' %>
-    <span class="description">Ex: a simple text</span>
-  </div>
-
-  <div class="group">
-    <%= f.label :state, t("activerecord.attributes.consigner.state", :default => "State"), :class => :label %>
-    <%= f.text_field :state, :class => 'text_field' %>
-    <span class="description">Ex: a simple text</span>
-  </div>
-
-  <div class="group">
-    <%= f.label :zipcode, t("activerecord.attributes.consigner.zipcode", :default => "Zipcode"), :class => :label %>
-    <%= f.text_field :zipcode, :class => 'text_field' %>
-    <span class="description">Ex: a simple text</span>
-  </div>
-
-  <div class="group">
-    <%= f.label :phone, t("activerecord.attributes.consigner.phone", :default => "Phone"), :class => :label %>
-    <%= f.text_field :phone, :class => 'text_field' %>
-    <span class="description">Ex: a simple text</span>
-  </div>
-
-  <div class="group">
-    <%= f.label :email, t("activerecord.attributes.consigner.email", :default => "Email"), :class => :label %>
-    <%= f.text_field :email, :class => 'text_field' %>
-    <span class="description">Ex: a simple text</span>
-  </div>
-
-  <div class="group">
-    <%= f.label :website, t("activerecord.attributes.consigner.website", :default => "Website"), :class => :label %>
-    <%= f.text_field :website, :class => 'text_field' %>
-    <span class="description">Ex: a simple text</span>
-  </div>
-
-  <div class="group">
-    <%= f.label :fax, t("activerecord.attributes.consigner.fax", :default => "Fax"), :class => :label %>
-    <%= f.text_field :fax, :class => 'text_field' %>
-    <span class="description">Ex: a simple text</span>
-  </div>
-
-  <div class="group">
-    <%= f.label :notes, t("activerecord.attributes.consigner.notes", :default => "Notes"), :class => :label %>
-    <%= f.text_area :notes, :class => 'text_area' %>
-    <span class="description">Ex: a simple text</span>
-  </div>
-        
+<% semantic_form_for @consigner do |f| %>
+	<% f.inputs :name, :biz_name %> 
+	<% f.inputs :street, :street_2, :city, :state, :zipcode %>
+	<% f.inputs :phone, :email, :website, :fax, :notes, :percentage %>
+	<%= f.buttons %>
+<% end %>
 <div class="group navform wat-cf">
   <button class="button" type="submit">
     <%= image_tag("web-app-theme/tick.png", :alt => "#{t("web-app-theme.save", :default => "Save")}") %> <%= t("web-app-theme.save", :default => "Save") %>

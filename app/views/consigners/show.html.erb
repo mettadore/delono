@@ -1,84 +1,12 @@
 <div class="block">
   <div class="content">
     <div class="inner">
-        <p>
-          <b><%= t("activerecord.attributes.consigner.name", :default => t("activerecord.labels.name", :default => "Name")) %>:</b>
-          <%= @consigner.name %>
-          <b><%= t("activerecord.attributes.consigner.biz_name", :default => t("activerecord.labels.biz_name", :default => "Biz name")) %>:</b>
-          <%= @consigner.biz_name %>
-<br/>
-          <b><%= t("activerecord.attributes.consigner.street", :default => t("activerecord.labels.street", :default => "Street")) %>:</b>
-          <%= @consigner.street %>
-					<br/>
-          <b><%= t("activerecord.attributes.consigner.street_2", :default => t("activerecord.labels.street_2", :default => "Street 2")) %>:</b>
-          <%= @consigner.street_2 %>
-					<br/>
-          <b><%= t("activerecord.attributes.consigner.city", :default => t("activerecord.labels.city", :default => "City")) %>:</b>
-          <%= @consigner.city %>
-					<br/>
-          <b><%= t("activerecord.attributes.consigner.state", :default => t("activerecord.labels.state", :default => "State")) %>:</b>
-          <%= @consigner.state %>
-					<br/>
-          <b><%= t("activerecord.attributes.consigner.zipcode", :default => t("activerecord.labels.zipcode", :default => "Zipcode")) %>:</b>
-          <%= @consigner.zipcode %>
-					<br/>
-          <b><%= t("activerecord.attributes.consigner.phone", :default => t("activerecord.labels.phone", :default => "Phone")) %>:</b>
-          <%= @consigner.phone %>
-					<br/>
-          <b><%= t("activerecord.attributes.consigner.email", :default => t("activerecord.labels.email", :default => "Email")) %>:</b>
-          <%= @consigner.email %>
-					<br/>
-          <b><%= t("activerecord.attributes.consigner.website", :default => t("activerecord.labels.website", :default => "Website")) %>:</b>
-          <%= @consigner.website %>
-					<br/>
-          <b><%= t("activerecord.attributes.consigner.fax", :default => t("activerecord.labels.fax", :default => "Fax")) %>:</b>
-          <%= @consigner.fax %>
-					<br/>
-          <b><%= t("activerecord.attributes.consigner.notes", :default => t("activerecord.labels.notes", :default => "Notes")) %>:</b>
-          <%= @consigner.notes %>
-					<br/>
-          <b><%= t("activerecord.attributes.consigner.last_invoiced", :default => t("activerecord.labels.last_invoiced", :default => "Last invoiced")) %>:</b>
-          <%= @consigner.last_invoice.date if @consigner.last_invoice %>
-        </p>
-	      <table class="table">
-	        <tr>             
-	          <th class="first">Code</th>
-						<th>Name</th>
-						<th>Consigner</th>
-						<th>Wholesale</th>
-						<th>Retail</th>
-						<th>In Stock</th>
-						<th>Sales</th>
-						<th>Income</th>
-						<th>Cost</th>
-						<th>Sell!</th>
-	          <th class="last">&nbsp;</th>
-	        </tr>
-					<% total_cost = 0 %>
-	        <% @consigner.products.each do |product| -%>
-						<% total_cost += product.cost_this_period %>
-	        <tr class="<%= cycle("odd", "even") %>">
-						<td><%= link_to product.code, product %></td>
-	          <td><%= link_to product.name, product_path(product) %></td>
-	          <td><%= link_to product.consigner.name_or_bizname %></td>
-						<td><%= number_to_currency product.wholesale %></td>
-						<td><%= number_to_currency product.retail %></td>
-						<td><%= product.count > 0 ? product.count : "No Stock" %></td>
-						<td><%= product.sales_this_period %></td>
-						<td><%= number_to_currency product.income_this_period %></td>
-						<td><%= number_to_currency product.cost_this_period %></td>
-						<td><%= link_to "Sell!", product_path(product) + "/sell" if product.count > 0 %></td>
-						<td class ="last">
-							<%= link_to "Receive", product_path(product) + "/receive" %> |
-							<%= link_to "Restock", product_path(product) + "/restock" %><br />
-							<%= link_to "Return", product_path(product) + "/return" %> |
-							<%= link_to "Lose", product_path(product) + "/lose" %>
-
-	        </tr>          
-	        <% end -%>
-	      </table>
-				<h3 style="float:right">Total This Period: <%= number_to_currency total_cost %></h3>
-
+				<div style="float:right;">
+          <h3>Consigner last invoiced: <%= link_to @consigner.last_invoice.date, @consigner.last_invoice if @consigner.last_invoice %></h3>
+					<h3>Cost this period: <%= number_to_currency @consigner.total_this_period %>
+				</div>
+				<%= render :partial => "shared/consigner", :locals => {:consigner => @consigner} %>
+				<%= render :partial => "shared/products", :locals => {:products => @consigner.products} %>
       <div class="wat-cf">
         <%= link_to "#{image_tag("web-app-theme/application_edit.png", :alt => "#{t("web-app-theme.edit", :default=> "Edit")}")} #{t("web-app-theme.edit", :default=> "Edit")}", edit_consigner_path(@consigner), :class => "button" %> 
         <%= link_to "#{image_tag("web-app-theme/cross.png", :alt => "#{t("web-app-theme.delete", :default=> "Delete")}")} #{t("web-app-theme.delete", :default => "Delete")}", consigner_path(@consigner), :method => "delete", :class => "button", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>

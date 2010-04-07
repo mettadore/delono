@@ -7,6 +7,7 @@
           <th class="first">ID</th>
 					<th>Name</th>
 					<th>Business Name</th>
+					<th>Current Total</th>
 					<th>Invoiced</th>
           <th class="last">&nbsp;</th>
         </tr>
@@ -15,9 +16,10 @@
           <td><%= consigner.id %></td>
 					<td><%= link_to consigner.name, consigner_path(consigner) %></td>
 					<td><%= consigner.biz_name %></td>
+					<td><%= consigner.total_this_period %></td>
 					<td><%= link_to consigner.last_invoice.date, invoice_path(consigner.last_invoice) if consigner.last_invoice %></td>
           <td class="last">
-            <%= link_to "Invoice!", consigner_path(consigner) + "/invoice"%>
+            <%= link_to "Invoice!", consigner_path(consigner) + "/invoice", :confirm => "#{t("web-app-theme.confirm", :default => "Invoice #{consigner.name}?")}"%>
           </td>
         </tr>          
         <% end -%>

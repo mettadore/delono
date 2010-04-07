@@ -1,0 +1,38 @@
+<table class="table">
+  <tr>             
+    <th class="first">Code</th>
+		<th>Name</th>
+		<th>Consigner</th>
+		<th>Wholesale</th>
+		<th>Stock/Sales</th>
+		<th>Cost</th>
+		<th>Actions</th>
+    <th class="last">&nbsp;</th>
+  </tr>
+  <% products.each do |product| -%>
+  <tr class="<%= cycle("odd", "even") %>">
+		<td><%= link_to product.code, product %></td>
+    <td><%= link_to product.name, product_path(product) %></td>
+    <td><%= link_to product.consigner.name_or_bizname %></td>
+		<td><strong><%= number_to_currency product.wholesale %></strong><br /><span style="font-size:10px">
+		(<%= number_to_currency product.retail %>)</span></td>
+		<td><%= product.count > 0 ? product.count : "No Stock" %> / <%= product.sales_this_period %></td>
+		<td><strong><%= number_to_currency product.cost_this_period %></strong><br /><span style="font-size:10px">
+		(<%= number_to_currency product.income_this_period %>)</span></td>
+		<td><% form_tag({:controller => "products", :action => "multiple", :id => product.id}) do %>
+			<%= text_field(:quick_trans, :received, :size => 1, :value => 0) %>
+			<%= label_tag(:receive, "Received  ") %>
+			<%= text_field(:quick_trans, :sold, :size => 1, :value => 0) %>
+			<%= label_tag(:sell, "Sold  ") %>
+			<%= text_field(:quick_trans, :returned, :size => 1, :value => 0) %>
+			<%= label_tag(:return, "Returned  ") %>
+			<%= submit_tag("Submit") %>
+			<% end %>
+		</td>
+		<td class ="last">
+			<%= link_to "Restock", product_path(product) + "/restock" %><br />
+			<%= link_to "Lose", product_path(product) + "/lose" %>
+
+  </tr>          
+  <% end -%>
+</table>

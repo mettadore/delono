@@ -5,19 +5,7 @@ class Product < ActiveRecord::Base
   
   named_scope :by_business_and_consigner,   lambda { |biz, cons| {:conditions => ["business_id = ? AND consigner_id = ?", biz, cons]}}
   validates_presence_of :consigner_id, :business_id, :code, :retail, :wholesale
-  def before_validation_on_create
-    def retail?; attribute_present?("retail"); end
-    def wholesale?; attribute_present?("wholesale"); end
-    if not retail? and not wholesale?
-      errors.add(product, "Must have either a retail or a wholesale price")
-    end
-    unless wholesale? and retail?
-      percent = (100 - consigner.percentage) * 0.01
-      self.wholesale = self.retail * percent if retail? and not wholesale?
-      self.retail = self.wholesale / percent if wholesale? and not retail?
-    end
-    self.code.upcase! if attribute_present?("code")
-  end
+  before_validation_on_create :set_percentage, :upcase_code!
 
   def received; Transaction.received.by_product(id); end
   def sold; Transaction.sold.by_product(id); end
@@ -60,7 +48,23 @@ class Product < ActiveRecord::Base
   end
   
   private
+
   def upcase_code!
     self.code.upcase! if attribute_present?("code")
   end
+
+  def set_percentage
+    def retail?; attribute_present?("retail"); end
+    def wholesale?; attribute_present?("wholesale"); end
+    if not retail? and not wholesale?
+      errors.add(product, "Must have either a retail or a wholesale price")
+    end
+    unless wholesale? and retail?
+      #percent = (100 - consigner.percentage) * 0.01
+      self.wholesale = self.retail * consigner.percentage * 0.01 if retail? and not wholesale?
+      self.retail = self.wholesale / consigner.percentage * 0.01 if wholesale? and not retail?
+    end
+    self.code.upcase! if attribute_present?("code")
+  end
+
 end

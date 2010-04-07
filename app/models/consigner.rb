@@ -17,6 +17,10 @@ class Consigner < ActiveRecord::Base
   def bizname; biz_name; end
   def name_or_bizname; biz_name ? biz_name : name; end
 
+  def total_this_period
+    products.inject(0){|sum, prod| sum + prod.cost_this_period}
+  end
+  
   private
   
   def downcase_name
@@ -25,8 +29,8 @@ class Consigner < ActiveRecord::Base
   end
   
   def humanize_name
-    self.name = self.name.humanize.titleize
-    self.biz_name = self.biz_name.humanize.titleize if attribute_present?("biz_name")
+    self.name = self.name.titleize
+    self.biz_name = self.biz_name.titleize if attribute_present?("biz_name")
   end
 
 end

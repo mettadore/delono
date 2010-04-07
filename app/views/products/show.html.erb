@@ -1,41 +1,20 @@
 <div class="block">
   <div class="content">
     <div class="inner">
-      
-        <p>
-          <b><%= t("activerecord.attributes.product.code", :default => t("activerecord.labels.code", :default => "Code")) %>:</b>
-          <%= @product.code %>
-        </p>
+			<div style="float:right;">
+				<%= render :partial => "shared/consigner", :locals => {:consigner => @product.consigner} %>
+			</div>
+      <h2>Product Code: <%= @product.code %></h2>
+			<h3><%= @product.name %></h3>
 
-        <p>
-          <b><%= t("activerecord.attributes.product.name", :default => t("activerecord.labels.name", :default => "Name")) %>:</b>
-          <%= @product.name %>
-        </p>
+      <p><%= @product.description if @product.description %></p>
 
-        <p>
-          <b><%= t("activerecord.attributes.product.description", :default => t("activerecord.labels.description", :default => "Description")) %>:</b>
-          <%= @product.description %>
-        </p>
+      <p><strong>Wholesale: <%= @product.wholesale %></strong>, Retail: <%= @product.retail %></p>
+			<p><%= @product.count > 0 ? @product.count.to_s + " in stock" : "No stock" %> with <strong><%= @product.sales_this_period %> sales</strong> and<br />
+				 <strong><%= number_to_currency @product.cost_this_period %> in costs this period</strong><br />
+				 on <%= number_to_currency @product.income_this_period %> total income
+				
 
-        <p>
-          <b><%= t("activerecord.attributes.product.wholesale", :default => t("activerecord.labels.wholesale", :default => "Wholesale")) %>:</b>
-          <%= @product.wholesale %>
-        </p>
-
-        <p>
-          <b><%= t("activerecord.attributes.product.retail", :default => t("activerecord.labels.retail", :default => "Retail")) %>:</b>
-          <%= @product.retail %>
-        </p>
-
-        <p>
-          <b><%= t("activerecord.attributes.product.consigner_id", :default => t("activerecord.labels.consigner_id", :default => "Consigner")) %>:</b>
-          <%= @product.consigner_id %>
-        </p>
-
-        <p>
-          <b><%= t("activerecord.attributes.product.business_id", :default => t("activerecord.labels.business_id", :default => "Business")) %>:</b>
-          <%= @product.business_id %>
-        </p>
       <div class="wat-cf">
         <%= link_to "#{image_tag("web-app-theme/application_edit.png", :alt => "#{t("web-app-theme.edit", :default=> "Edit")}")} #{t("web-app-theme.edit", :default=> "Edit")}", edit_product_path(@product), :class => "button" %> 
         <%= link_to "#{image_tag("web-app-theme/cross.png", :alt => "#{t("web-app-theme.delete", :default=> "Delete")}")} #{t("web-app-theme.delete", :default => "Delete")}", product_path(@product), :method => "delete", :class => "button", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>

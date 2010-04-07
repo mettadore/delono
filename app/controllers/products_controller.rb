@@ -42,9 +42,13 @@ class ProductsController < ApplicationController
   # POST /products.xml
   def create
     @product = @current_business.products.build(params[:product])
-
+    #Need to catch a nil consigner
     respond_to do |format|
-      if @product.save
+      if not params[:product][:consigner]
+        flash[:error] = "You must add a valid consigner!"
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @product.errors, :status => :unprocessable_entity }        
+      elsif @product.save
         flash[:notice] = 'Product was successfully created.'
         format.html { redirect_to products_url(@business) }
         format.xml  { render :xml => @product, :status => :created, :location => @product }
@@ -153,6 +157,33 @@ class ProductsController < ApplicationController
       end
     end
   end    
+  
+  def multiple
+    errors = false
+    product = @current_business.products.find(params[:id])
+    sold, received, returned = params[:quick_trans][:sold].to_i, params[:quick_trans][:received].to_i, params[:quick_trans][:returned].to_i
+    [[received, "receive"], [sold, "sell"], [returned, "return"]].each do |num, verb|
+      num.times do
+        transaction = transact(product, verb)
+        if not transaction.save
+          errors = true
+        end
+      end
+    end
+
+    respond_to do |format|
+      if not errors
+        txt = ""
+        txt += "#{sold} sold " if sold
+        txt += "#{received} received " if received
+        txt += "#{returned} returned" if returned
+        flash[:notice] = "Product code #{product.code}: " + txt
+        format.html {redirect_to :back}
+      else
+        format.html { render :action => "lose"}
+      end
+    end
+  end
 
   private
 
