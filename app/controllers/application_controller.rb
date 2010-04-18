@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
     @current_business = Business.find_by_subdomain(current_subdomain)
     if @current_business.nil?
       flash[:error] = "Business Invalid!"
-      redirect_to root_url
+      redirect_to root_url(:subdomain => false)
     end
   end
   # Scrub sensitive parameters from your log
