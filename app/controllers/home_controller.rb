@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  before_filter :get_business_by_subdomain
   def index
     #render :home
   end

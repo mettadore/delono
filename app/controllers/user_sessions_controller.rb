@@ -1,4 +1,5 @@
 class UserSessionsController < ApplicationController
+  before_filter :get_business_by_subdomain
   before_filter :login_required, :only => :destroy
   def new
     if current_subdomain.nil?
