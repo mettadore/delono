@@ -3,7 +3,7 @@ set :application, "delono.com"
 set :repository,  "git@github.com:mettadore/delono.git"
 
 set :scm, "git"
-set :scm_passphrase, "Un+c2WFeH"
+set :scm_password, "Un+c2WFeH"
 set :user, "deployer"
 ssh_options[:forward_agent] = true
 

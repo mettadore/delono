@@ -6,7 +6,7 @@ class TransactionType < ActiveRecord::Base
   named_scope :restocked, :conditions => ["past = 'restocked'"]
   named_scope :lost,      :conditions => ["past = 'lost'"]
   named_scope :returned,  :conditions => ["past = 'returned'"]
-  
+
   def self.type_id(past)
     TransactionType.send(past).first.id
   end

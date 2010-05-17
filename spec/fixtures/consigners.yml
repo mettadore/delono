@@ -13,7 +13,7 @@ one:
   website: MyString
   fax: 1
   notes: MyText
-  last_invoiced: 2010-03-16
+  invoice_id: 1
 
 two:
   name: MyString
@@ -28,4 +28,4 @@ two:
   website: MyString
   fax: 1
   notes: MyText
-  last_invoiced: 2010-03-16
+  invoice_id: 1

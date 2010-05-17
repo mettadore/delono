@@ -7,6 +7,7 @@ one:
   consigner_id: 1
   wholesale: 1.5
   retail: 1.5
+  business_id: 1
 
 two:
   code: MyString
@@ -15,3 +16,4 @@ two:
   consigner_id: 1
   wholesale: 1.5
   retail: 1.5
+  business_id: 1

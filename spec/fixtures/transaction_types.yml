@@ -1,7 +1,22 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  name: MyString
-
+    noun: receipt
+    verb: receive
+    past: received
 two:
-  name: MyString
+    noun: sale
+    verb: sell
+    past: sold
+three:
+    noun: restock
+    verb: restock
+    past: restocked
+four:
+    noun: return
+    verb: return
+    past: returned
+five:
+    noun: loss
+    verb: loose
+    past: lost
