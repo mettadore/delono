@@ -6,6 +6,8 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Major.create(:name => 'Daley', :city => cities.first)
 
+require 'fastercsv'
+
 I1 = Invitation.create(:recipient_email => "john@mettadore.com")
 I1.save!
 
@@ -96,3 +98,22 @@ end
 
 Invoice.create(:business_id => B2.id, :consigner_id => C2.id)
 Invoice.create(:business_id => B2.id, :consigner_id => C3.id)
+
+FasterCSV.foreach("db/consigners.csv") do |row|
+  C = Consigner.new(:name => row[0])
+  C.biz_name = row[1] if row[1]
+  C.street = row[2] if row[2]
+  C.street_2 = row[3] if row[3]
+  C.city = row[4] if row[4]
+  C.state = row[5] if row[5]
+  C.zipcode = row[6] if row[6]
+  C.phone = row[7].gsub("-","").to_i if row[7]
+  C.email = row[8] if row[7]
+  C.website = row[9] if row[9]
+  C.fax = row[10].gsub("-","").to_i if row[10]
+  C.percentage = row[11] if row[11]
+  C.notes = row[12] if row[12]
+  C.save!
+  B2.consigners << C
+
+end

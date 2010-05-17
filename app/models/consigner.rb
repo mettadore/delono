@@ -6,7 +6,7 @@ class Consigner < ActiveRecord::Base
   belongs_to  :last_invoice, :class_name => 'Invoice', :foreign_key => :invoice_id
   
   validates_presence_of :name
-  validates_uniqueness_of :name, :biz_name
+  validates_uniqueness_of :name
   before_validation :downcase_name
   after_validation :humanize_name 
     

@@ -7,11 +7,11 @@ class CreateConsigners < ActiveRecord::Migration
       t.string :street_2
       t.string :city
       t.string :state
-      t.integer :zipcode,   :length => 8
-      t.integer :phone,     :length => 8
+      t.string :zipcode
+      t.string :phone,     :length => 8
       t.string :email
       t.string :website
-      t.integer :fax,       :length => 8
+      t.string :fax,       :length => 8
       t.text :notes
       t.integer :percentage,  :null => false, :default => 65
 
