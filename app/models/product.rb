@@ -63,7 +63,6 @@ class Product < ActiveRecord::Base
     #percent = (100 - consigner.percentage) * 0.01
     self.wholesale = self.retail * consigner.percentage * 0.01 if retail? and not wholesale?
     self.retail = self.wholesale / (consigner.percentage * 0.01) if wholesale? and not retail?
-    self.code.upcase! if attribute_present?("code")
   end
 
 end
