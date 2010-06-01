@@ -53,17 +53,16 @@ class Product < ActiveRecord::Base
     self.code.upcase! if attribute_present?("code")
   end
 
+  def retail?; attribute_present?("retail"); end
+  def wholesale?; attribute_present?("wholesale"); end
+
   def set_percentage
-    def retail?; attribute_present?("retail"); end
-    def wholesale?; attribute_present?("wholesale"); end
     if not retail? and not wholesale?
       errors.add(product, "Must have either a retail or a wholesale price")
     end
-    unless wholesale? and retail?
-      #percent = (100 - consigner.percentage) * 0.01
-      self.wholesale = self.retail * consigner.percentage * 0.01 if retail? and not wholesale?
-      self.retail = self.wholesale / consigner.percentage * 0.01 if wholesale? and not retail?
-    end
+    #percent = (100 - consigner.percentage) * 0.01
+    self.wholesale = self.retail * consigner.percentage * 0.01 if retail? and not wholesale?
+    self.retail = self.wholesale / (consigner.percentage * 0.01) if wholesale? and not retail?
     self.code.upcase! if attribute_present?("code")
   end
 

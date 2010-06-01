@@ -44,7 +44,7 @@ class ProductsController < ApplicationController
     @product = @current_business.products.build(params[:product])
     #Need to catch a nil consigner
     respond_to do |format|
-      if not params[:product][:consigner]
+      if not params[:product][:consigner_id]
         flash[:error] = "You must add a valid consigner!"
         format.html { render :action => "new" }
         format.xml  { render :xml => @product.errors, :status => :unprocessable_entity }        
